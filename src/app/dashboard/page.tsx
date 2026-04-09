@@ -16,12 +16,11 @@ export default async function DashboardPage() {
     .select("*")
     .order("created_at", { ascending: false });
 
-  // Fetch recent transactions for first business (or all)
+  // Fetch all transactions (filtered client-side per business)
   const { data: transactions } = await supabase
     .from("transactions")
     .select("*")
-    .order("created_at", { ascending: false })
-    .limit(20);
+    .order("document_date", { ascending: false });
 
   return (
     <DashboardClient
