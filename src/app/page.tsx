@@ -8,10 +8,10 @@ export default function Home() {
         {/* Nav */}
         <nav className="sticky top-0 z-40 bg-brand-hero/90 backdrop-blur-lg">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <span className="text-[18px] font-medium tracking-tight">
+            <a href="#" className="text-[18px] font-medium tracking-tight">
               <span className="text-white">Bye</span>
               <span className="text-brand">Bills</span>
-            </span>
+            </a>
             <div className="flex items-center gap-6">
               <Link href="#how-it-works" className="hidden sm:inline text-[14px] text-white/55 hover:text-white/80 transition-colors">
                 How it works
