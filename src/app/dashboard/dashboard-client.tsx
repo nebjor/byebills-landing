@@ -36,6 +36,10 @@ export default function DashboardClient({
   const [activeBusiness, setActiveBusiness] = useState<Business | null>(
     businesses[0] ?? null
   );
+  const [showNewBusiness, setShowNewBusiness] = useState(false);
+  const [newBusinessName, setNewBusinessName] = useState("");
+  const [newBusinessCurrency, setNewBusinessCurrency] = useState("CHF");
+  const [creating, setCreating] = useState(false);
   const [filterType, setFilterType] = useState<FilterType>("all");
   const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
   const [dateFrom, setDateFrom] = useState("");
@@ -84,10 +88,18 @@ export default function DashboardClient({
   }
 
   async function handleCreateBusiness() {
-    const name = prompt("Business name:");
-    if (!name) return;
+    if (!newBusinessName.trim()) return;
+    setCreating(true);
     const supabase = createClient();
-    await (supabase.from("businesses") as any).insert({ name, user_id: user.id });
+    await (supabase.from("businesses") as any).insert({
+      name: newBusinessName.trim(),
+      currency: newBusinessCurrency,
+      user_id: user.id,
+    });
+    setNewBusinessName("");
+    setNewBusinessCurrency("CHF");
+    setShowNewBusiness(false);
+    setCreating(false);
     router.refresh();
   }
 
@@ -145,7 +157,7 @@ export default function DashboardClient({
             Create your first business to get started
           </p>
           <button
-            onClick={handleCreateBusiness}
+            onClick={() => setShowNewBusiness(true)}
             className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-hover"
           >
             + New Business
@@ -168,7 +180,7 @@ export default function DashboardClient({
               </button>
             ))}
             <button
-              onClick={handleCreateBusiness}
+              onClick={() => setShowNewBusiness(true)}
               className="rounded-full px-3 py-1 text-sm bg-zinc-100 text-zinc-500 hover:bg-zinc-200"
             >
               +
@@ -341,6 +353,73 @@ export default function DashboardClient({
             router.refresh();
           }}
         />
+      )}
+
+      {/* New Business Modal */}
+      {showNewBusiness && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl space-y-5">
+            <div>
+              <h2 className="text-lg font-bold text-zinc-900">New business</h2>
+              <p className="text-sm text-zinc-500 mt-1">Add your side-hustle or freelance gig</p>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="biz-name-dash" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  Business name
+                </label>
+                <input
+                  id="biz-name-dash"
+                  type="text"
+                  autoFocus
+                  placeholder="e.g. My Freelance Gig"
+                  value={newBusinessName}
+                  onChange={(e) => setNewBusinessName(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleCreateBusiness()}
+                  className="w-full rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="biz-currency-dash" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  Currency
+                </label>
+                <select
+                  id="biz-currency-dash"
+                  value={newBusinessCurrency}
+                  onChange={(e) => setNewBusinessCurrency(e.target.value)}
+                  className="w-full rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-900 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+                >
+                  <option value="CHF">CHF — Swiss Franc</option>
+                  <option value="EUR">EUR — Euro</option>
+                  <option value="USD">USD — US Dollar</option>
+                  <option value="GBP">GBP — British Pound</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex gap-3 pt-1">
+              <button
+                onClick={() => {
+                  setShowNewBusiness(false);
+                  setNewBusinessName("");
+                  setNewBusinessCurrency("CHF");
+                }}
+                className="flex-1 rounded-xl border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateBusiness}
+                disabled={!newBusinessName.trim() || creating}
+                className="flex-1 rounded-xl bg-brand px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-hover disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {creating ? "Creating..." : "Create"}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </main>
   );
