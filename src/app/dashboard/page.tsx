@@ -10,23 +10,13 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
-  const { data: profile } = await supabase
-    .from("users")
-    .select("*")
-    .eq("id", user.id)
-    .single();
-
-  const { data: businesses } = await supabase
-    .from("businesses")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  // Recent 5 transactions for the home overview
-  const { data: transactions } = await supabase
-    .from("transactions")
-    .select("*")
-    .order("document_date", { ascending: false })
-    .limit(5);
+  // Parallel fetch — all queries at once
+  const [{ data: profile }, { data: businesses }, { data: transactions }] =
+    await Promise.all([
+      supabase.from("users").select("*").eq("id", user.id).single(),
+      supabase.from("businesses").select("*").order("created_at", { ascending: false }),
+      supabase.from("transactions").select("*").order("document_date", { ascending: false }).limit(5),
+    ]);
 
   return (
     <HomeClient

@@ -10,15 +10,10 @@ export default async function TransactionsPage() {
 
   if (!user) redirect("/login");
 
-  const { data: businesses } = await supabase
-    .from("businesses")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  const { data: transactions } = await supabase
-    .from("transactions")
-    .select("*")
-    .order("document_date", { ascending: false });
+  const [{ data: businesses }, { data: transactions }] = await Promise.all([
+    supabase.from("businesses").select("*").order("created_at", { ascending: false }),
+    supabase.from("transactions").select("*").order("document_date", { ascending: false }),
+  ]);
 
   return (
     <TransactionsClient
