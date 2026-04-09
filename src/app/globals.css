@@ -8,6 +8,8 @@
   --brand-primary: #10b981;
   --brand-primary-hover: #059669;
   --brand-primary-light: #d1fae5;
+  --brand-dark: #052e1c;
+  --brand-hero: #0f1a14;
   --brand-secondary: #475569;
   --brand-secondary-hover: #334155;
 }
@@ -18,6 +20,8 @@
   --color-brand: var(--brand-primary);
   --color-brand-hover: var(--brand-primary-hover);
   --color-brand-light: var(--brand-primary-light);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-hero: var(--brand-hero);
   --color-brand-secondary: var(--brand-secondary);
   --color-brand-secondary-hover: var(--brand-secondary-hover);
   --font-sans: var(--font-geist-sans);
