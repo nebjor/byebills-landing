@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import type { Business } from "@/lib/database.types";
 import { createClient } from "@/lib/supabase/client";
 
 type UserProfile = {
@@ -16,19 +15,15 @@ type UserProfile = {
 export default function SettingsClient({
   user,
   profile,
-  businesses,
 }: {
   user: User;
   profile: UserProfile;
-  businesses: Business[];
 }) {
   const [fullName, setFullName] = useState(profile?.full_name ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [currency, setCurrency] = useState("CHF");
   const [notifications, setNotifications] = useState(true);
-  const [renamingId, setRenamingId] = useState<string | null>(null);
-  const [renameValue, setRenameValue] = useState("");
   const router = useRouter();
 
   async function handleSaveProfile() {
@@ -41,15 +36,6 @@ export default function SettingsClient({
     router.refresh();
   }
 
-  async function handleRename(id: string) {
-    if (!renameValue.trim()) return;
-    const supabase = createClient();
-    await (supabase.from("businesses") as any).update({ name: renameValue.trim() }).eq("id", id);
-    setRenamingId(null);
-    setRenameValue("");
-    router.refresh();
-  }
-
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
@@ -59,61 +45,6 @@ export default function SettingsClient({
 
   return (
     <div className="space-y-6">
-      {/* Businesses */}
-      <section className="space-y-4">
-        <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider">Businesses</h2>
-
-        {businesses.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-zinc-300 p-6 text-center">
-            <p className="text-sm text-zinc-400">No businesses yet</p>
-          </div>
-        ) : (
-          <div className="rounded-xl border border-zinc-200 bg-white divide-y divide-zinc-100">
-            {businesses.map((b) => (
-              <div key={b.id} className="p-4">
-                {renamingId === b.id ? (
-                  <div className="flex gap-2">
-                    <input
-                      value={renameValue}
-                      onChange={(e) => setRenameValue(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleRename(b.id)}
-                      autoFocus
-                      className="flex-1 rounded-lg border border-zinc-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
-                      placeholder="Business name"
-                    />
-                    <button
-                      onClick={() => handleRename(b.id)}
-                      className="rounded-lg bg-brand px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-hover"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={() => { setRenamingId(null); setRenameValue(""); }}
-                      className="rounded-lg border border-zinc-200 px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-50"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-zinc-900">{b.name}</p>
-                      <p className="text-xs text-zinc-500 mt-0.5">{b.currency}</p>
-                    </div>
-                    <button
-                      onClick={() => { setRenamingId(b.id); setRenameValue(b.name); }}
-                      className="text-xs text-brand hover:text-brand-hover font-medium"
-                    >
-                      Rename
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
-
       {/* Account / Profile */}
       <section className="space-y-4">
         <h2 className="text-sm font-semibold text-zinc-900 uppercase tracking-wider">Account</h2>
