@@ -78,8 +78,8 @@ export default function SettingsClient() {
           </div>
           <div className="flex items-center justify-between p-4">
             <p className="text-sm text-zinc-900">Support</p>
-            <a href="mailto:hey@byebills.app" className="text-sm text-brand hover:text-brand-hover">
-              hey@byebills.app
+            <a href="mailto:info@byebills.app" className="text-sm text-brand hover:text-brand-hover">
+              info@byebills.app
             </a>
           </div>
         </div>
