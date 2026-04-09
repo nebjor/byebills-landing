@@ -37,7 +37,7 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">ByeBills</h1>
+          <h1 className="text-2xl font-bold text-brand">ByeBills</h1>
           <p className="text-sm text-gray-500 mt-1">Invoice Scanner & Bookkeeper</p>
         </div>
 
@@ -64,7 +64,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-zinc-900 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="w-full rounded-lg bg-brand py-2 text-sm font-medium text-white hover:bg-brand-hover disabled:opacity-50"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
@@ -72,7 +72,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-gray-500">
           No account?{" "}
-          <a href="/signup" className="text-zinc-900 underline">
+          <a href="/signup" className="text-brand underline">
             Sign up
           </a>
         </p>

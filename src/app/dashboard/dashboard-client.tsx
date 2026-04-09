@@ -41,7 +41,7 @@ export default function DashboardClient({
     <main className="mx-auto max-w-lg p-4 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">ByeBills</h1>
+        <h1 className="text-xl font-bold text-brand">ByeBills</h1>
         <button
           onClick={handleLogout}
           className="text-sm text-gray-500 hover:text-gray-900"
@@ -58,7 +58,7 @@ export default function DashboardClient({
           </p>
           <button
             onClick={handleCreateBusiness}
-            className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
+            className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white"
           >
             + New Business
           </button>
@@ -72,7 +72,7 @@ export default function DashboardClient({
                 onClick={() => setActiveBusiness(b)}
                 className={`rounded-full px-3 py-1 text-sm ${
                   activeBusiness?.id === b.id
-                    ? "bg-zinc-900 text-white"
+                    ? "bg-brand text-white"
                     : "bg-zinc-100 text-zinc-700"
                 }`}
               >
@@ -90,7 +90,7 @@ export default function DashboardClient({
           {/* Scan button */}
           <button
             onClick={() => setShowScan(true)}
-            className="w-full rounded-lg bg-zinc-900 py-3 text-sm font-medium text-white hover:bg-zinc-800"
+            className="w-full rounded-lg bg-brand py-3 text-sm font-medium text-white hover:bg-brand-hover"
           >
             📸 Scan Invoice / Upload Bill
           </button>

@@ -188,7 +188,7 @@ export default function ScanModal({
             />
             <button
               onClick={capturePhoto}
-              className="w-full rounded-lg bg-zinc-900 py-3 text-sm font-medium text-white"
+              className="w-full rounded-lg bg-brand py-3 text-sm font-medium text-white hover:bg-brand-hover"
             >
               Capture
             </button>
@@ -198,7 +198,7 @@ export default function ScanModal({
         {/* Extracting */}
         {step === "extracting" && (
           <div className="py-12 text-center">
-            <div className="animate-spin inline-block h-8 w-8 border-4 border-zinc-300 border-t-zinc-900 rounded-full mb-3" />
+            <div className="animate-spin inline-block h-8 w-8 border-4 border-brand-light border-t-brand rounded-full mb-3" />
             <p className="text-sm text-gray-500">AI is reading your document...</p>
           </div>
         )}
@@ -333,7 +333,7 @@ export default function ScanModal({
 
             <button
               onClick={handleConfirm}
-              className="w-full rounded-lg bg-zinc-900 py-3 text-sm font-medium text-white hover:bg-zinc-800 mt-2"
+              className="w-full rounded-lg bg-brand py-3 text-sm font-medium text-white hover:bg-brand-hover mt-2"
             >
               ✓ Confirm & Save
             </button>
@@ -343,7 +343,7 @@ export default function ScanModal({
         {/* Saving */}
         {step === "saving" && (
           <div className="py-12 text-center">
-            <div className="animate-spin inline-block h-8 w-8 border-4 border-zinc-300 border-t-zinc-900 rounded-full mb-3" />
+            <div className="animate-spin inline-block h-8 w-8 border-4 border-brand-light border-t-brand rounded-full mb-3" />
             <p className="text-sm text-gray-500">Saving transaction...</p>
           </div>
         )}
@@ -355,7 +355,7 @@ export default function ScanModal({
             <p className="text-sm text-gray-600">Transaction saved!</p>
             <button
               onClick={onClose}
-              className="rounded-lg bg-zinc-900 px-6 py-2 text-sm font-medium text-white"
+              className="rounded-lg bg-brand px-6 py-2 text-sm font-medium text-white hover:bg-brand-hover"
             >
               Done
             </button>

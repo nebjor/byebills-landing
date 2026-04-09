@@ -6,14 +6,14 @@ export default function Home() {
       {/* Nav */}
       <nav className="sticky top-0 z-40 border-b border-zinc-100 bg-white/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="text-xl font-bold tracking-tight">ByeBills</span>
+          <span className="text-xl font-bold tracking-tight text-brand">ByeBills</span>
           <div className="flex items-center gap-4">
             <Link href="/login" className="text-sm text-zinc-600 hover:text-zinc-900">
               Sign in
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 transition-colors"
+              className="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-hover transition-colors"
             >
               Get started free
             </Link>
@@ -42,7 +42,7 @@ export default function Home() {
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/signup"
-            className="rounded-full bg-zinc-900 px-8 py-3 text-sm font-semibold text-white hover:bg-zinc-800 transition-colors shadow-lg shadow-zinc-900/20"
+            className="rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white hover:bg-brand-hover transition-colors shadow-lg shadow-brand/20"
           >
             Start scanning for free
           </Link>
@@ -114,7 +114,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-900 text-white text-xl font-bold shadow-lg">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               1
             </div>
             <h3 className="font-semibold mb-1">Scan or upload</h3>
@@ -124,7 +124,7 @@ export default function Home() {
             </p>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-900 text-white text-xl font-bold shadow-lg">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               2
             </div>
             <h3 className="font-semibold mb-1">AI reads it for you</h3>
@@ -134,7 +134,7 @@ export default function Home() {
             </p>
           </div>
           <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-900 text-white text-xl font-bold shadow-lg">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               3
             </div>
             <h3 className="font-semibold mb-1">Verify &amp; done</h3>
@@ -277,7 +277,7 @@ export default function Home() {
         </p>
         <Link
           href="/signup"
-          className="inline-flex rounded-full bg-zinc-900 px-8 py-3 text-sm font-semibold text-white hover:bg-zinc-800 transition-colors shadow-lg shadow-zinc-900/20"
+          className="inline-flex rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white hover:bg-brand-hover transition-colors shadow-lg shadow-brand/20"
         >
           Start scanning for free
         </Link>
@@ -286,7 +286,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-zinc-100 bg-white">
         <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col items-center gap-2 text-xs text-zinc-400">
-          <span className="font-semibold text-zinc-600">ByeBills</span>
+          <span className="font-semibold text-brand">ByeBills</span>
           <span>Invoice Scanner &amp; Bookkeeper for Swiss Side-Hustlers</span>
           <span>Built in Zurich 🇨🇭</span>
         </div>
