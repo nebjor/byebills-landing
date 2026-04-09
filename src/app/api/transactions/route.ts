@@ -14,6 +14,12 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { business_id, duplicate_hash, ...transactionData } = body;
 
+  // Sanitize payment_method to allowed values
+  const allowedPaymentMethods = ["cash", "bank", "twint", "card", "other"];
+  if (transactionData.payment_method && !allowedPaymentMethods.includes(transactionData.payment_method)) {
+    transactionData.payment_method = "other";
+  }
+
   if (!business_id) {
     return NextResponse.json(
       { error: "business_id required" },

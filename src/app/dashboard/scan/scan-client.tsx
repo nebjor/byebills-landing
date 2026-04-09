@@ -402,11 +402,18 @@ export default function ScanClient({ businesses }: { businesses: Business[] }) {
             </label>
             <label className="space-y-1">
               <span className="text-xs text-zinc-500">Payment Method</span>
-              <input
+              <select
                 value={data.payment_method ?? ""}
-                onChange={(e) => updateField("payment_method", e.target.value)}
-                className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
-              />
+                onChange={(e) => updateField("payment_method", e.target.value || null)}
+                className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 bg-white"
+              >
+                <option value="">—</option>
+                <option value="bank">Bank</option>
+                <option value="twint">Twint</option>
+                <option value="card">Card</option>
+                <option value="cash">Cash</option>
+                <option value="other">Other</option>
+              </select>
             </label>
           </div>
 
