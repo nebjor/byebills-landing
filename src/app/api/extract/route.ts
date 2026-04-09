@@ -45,8 +45,10 @@ export async function POST(request: NextRequest) {
 
   // Extract invoice data via LLM
   let extraction;
+  let providerName: string;
   try {
     const provider = getLLMProvider();
+    providerName = provider.name;
     extraction = await provider.extractInvoice(base64, mimeType);
   } catch (err) {
     const msg = err instanceof Error ? err.message : "LLM extraction failed";
@@ -80,6 +82,6 @@ export async function POST(request: NextRequest) {
     confidence: extraction.confidence,
     duplicate: existing ? { id: existing.id } : null,
     duplicateHash,
-    provider: provider.name,
+    provider: providerName,
   });
 }

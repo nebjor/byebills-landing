@@ -29,6 +29,7 @@ export type Database = {
           currency: string;
           vat_number: string | null;
           vat_liable: boolean;
+          archived: boolean;
           created_at: string;
         };
         Insert: {
@@ -38,6 +39,7 @@ export type Database = {
           currency?: string;
           vat_number?: string | null;
           vat_liable?: boolean;
+          archived?: boolean;
           created_at?: string;
         };
         Update: {
@@ -47,6 +49,7 @@ export type Database = {
           currency?: string;
           vat_number?: string | null;
           vat_liable?: boolean;
+          archived?: boolean;
           created_at?: string;
         };
       };
