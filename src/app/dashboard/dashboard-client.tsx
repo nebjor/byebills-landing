@@ -126,7 +126,7 @@ export default function DashboardClient({
   const hasFilters = filterType !== "all" || filterStatus !== "all" || dateFrom || dateTo || searchQuery;
 
   return (
-    <main className="mx-auto max-w-2xl p-4 space-y-5">
+    <main className="mx-auto max-w-2xl px-3 sm:px-4 py-4 space-y-4 sm:space-y-5 pb-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-brand">ByeBills</h1>
@@ -184,22 +184,22 @@ export default function DashboardClient({
           </button>
 
           {/* Summary cards */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="rounded-xl border border-zinc-200 bg-white p-3 sm:p-4">
               <p className="text-xs text-gray-500 mb-1">Income</p>
-              <p className="text-lg font-semibold text-green-600">
+              <p className="text-base sm:text-lg font-semibold text-green-600">
                 {formatCurrency(summary.income, currency)}
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
+            <div className="rounded-xl border border-zinc-200 bg-white p-3 sm:p-4">
               <p className="text-xs text-gray-500 mb-1">Expenses</p>
-              <p className="text-lg font-semibold text-red-600">
+              <p className="text-base sm:text-lg font-semibold text-red-600">
                 {formatCurrency(summary.expense, currency)}
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
+            <div className="rounded-xl border border-zinc-200 bg-white p-3 sm:p-4">
               <p className="text-xs text-gray-500 mb-1">Balance</p>
-              <p className={`text-lg font-semibold ${summary.balance >= 0 ? "text-green-600" : "text-red-600"}`}>
+              <p className={`text-base sm:text-lg font-semibold ${summary.balance >= 0 ? "text-green-600" : "text-red-600"}`}>
                 {formatCurrency(summary.balance, currency)}
               </p>
             </div>
@@ -210,7 +210,7 @@ export default function DashboardClient({
             <div className="flex items-center gap-2">
               <input
                 type="text"
-                placeholder="Search counterparty, description, ref..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 rounded-lg border border-zinc-200 px-3 py-2 text-sm placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"

@@ -131,7 +131,7 @@ export default function ScanModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 sm:items-center">
-      <div className="w-full max-w-lg rounded-t-2xl bg-white p-6 sm:rounded-2xl max-h-[90vh] overflow-y-auto">
+      <div className="w-full max-w-lg rounded-t-2xl bg-white p-4 sm:p-6 sm:rounded-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">
@@ -155,12 +155,12 @@ export default function ScanModal({
           <div className="space-y-3">
             <button
               onClick={startCamera}
-              className="w-full rounded-lg border-2 border-dashed p-8 text-center hover:border-zinc-400"
+              className="w-full rounded-lg border-2 border-dashed p-6 sm:p-8 text-center hover:border-zinc-400 active:bg-zinc-50"
             >
               <span className="text-3xl block mb-2">📸</span>
               <span className="text-sm text-gray-500">Take a photo</span>
             </button>
-            <label className="block w-full cursor-pointer rounded-lg border-2 border-dashed p-8 text-center hover:border-zinc-400">
+            <label className="block w-full cursor-pointer rounded-lg border-2 border-dashed p-6 sm:p-8 text-center hover:border-zinc-400 active:bg-zinc-50">
               <span className="text-3xl block mb-2">📄</span>
               <span className="text-sm text-gray-500">Upload file (photo or PDF)</span>
               <input
