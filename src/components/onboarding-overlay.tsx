@@ -28,15 +28,17 @@ const steps: OnboardingStep[] = [
 
 const STORAGE_KEY = "byebills-onboarding-done";
 
-export default function OnboardingOverlay() {
+export default function OnboardingOverlay({ hasBusiness = false }: { hasBusiness?: boolean }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Only show if user hasn't completed onboarding
+    // Skip if user already has a business (not a first-timer)
+    if (hasBusiness) return;
+    // Only show if user hasn't completed onboarding in this browser
     const done = localStorage.getItem(STORAGE_KEY);
     if (!done) setVisible(true);
-  }, []);
+  }, [hasBusiness]);
 
   function handleNext() {
     if (currentStep < steps.length - 1) {
