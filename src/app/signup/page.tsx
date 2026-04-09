@@ -8,6 +8,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -29,7 +30,29 @@ export default function SignupPage() {
       return;
     }
 
-    router.push("/login");
+    setSuccess(true);
+  }
+
+  if (success) {
+    return (
+      <main className="flex min-h-screen items-center justify-center p-4">
+        <div className="w-full max-w-sm space-y-4 text-center">
+          <div className="text-4xl">📬</div>
+          <h1 className="text-xl font-bold text-brand">Check your email</h1>
+          <p className="text-sm text-gray-500">
+            We sent a confirmation link to <strong>{email}</strong>.
+            <br />
+            Click it to activate your account, then sign in.
+          </p>
+          <a
+            href="/login"
+            className="inline-block rounded-lg bg-brand px-6 py-2 text-sm font-medium text-white hover:bg-brand-hover"
+          >
+            Go to sign in
+          </a>
+        </div>
+      </main>
+    );
   }
 
   return (
