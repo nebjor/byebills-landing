@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const tabs = [
   { href: "/dashboard", label: "Home", icon: HomeIcon },
-  { href: "/dashboard/scan", label: "Scan", icon: ScanIcon },
   { href: "/dashboard/transactions", label: "History", icon: ListIcon },
+  { href: "/dashboard/scan", label: "Scan", icon: ScanIcon, center: true },
   { href: "/dashboard/projects", label: "Projects", icon: FolderIcon },
   { href: "/dashboard/settings", label: "Settings", icon: GearIcon },
 ];
@@ -22,6 +22,26 @@ export default function BottomNav() {
             tab.href === "/dashboard"
               ? pathname === "/dashboard"
               : pathname.startsWith(tab.href);
+
+          if (tab.center) {
+            return (
+              <Link
+                key={tab.href}
+                href={tab.href}
+                className="flex flex-col items-center gap-0.5 -mt-5"
+              >
+                <div className={`flex items-center justify-center w-12 h-12 rounded-full shadow-lg transition-colors ${
+                  active ? "bg-brand" : "bg-brand hover:bg-brand-hover"
+                }`}>
+                  <tab.icon className="h-6 w-6 text-white" />
+                </div>
+                <span className={`text-[10px] font-medium ${active ? "text-brand" : "text-zinc-400"}`}>
+                  {tab.label}
+                </span>
+              </Link>
+            );
+          }
+
           return (
             <Link
               key={tab.href}

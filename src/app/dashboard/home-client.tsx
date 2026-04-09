@@ -37,25 +37,26 @@ export default function HomeClient({
   businesses: Business[];
   transactions: Transaction[];
 }) {
-  const [activeBusiness, setActiveBusiness] = useState<Business | null>(businesses[0] ?? null);
   const [showNewBusiness, setShowNewBusiness] = useState(false);
   const [newBusinessName, setNewBusinessName] = useState("");
   const [newBusinessCurrency, setNewBusinessCurrency] = useState("CHF");
   const [creating, setCreating] = useState(false);
   const router = useRouter();
 
-  const bizTransactions = useMemo(() => {
-    if (!activeBusiness) return transactions;
-    return transactions.filter((t) => t.business_id === activeBusiness.id);
-  }, [transactions, activeBusiness]);
+  const activeBusinesses = useMemo(() => businesses.filter((b) => !b.archived), [businesses]);
 
   const summary = useMemo(() => {
-    const income = bizTransactions.filter((t) => t.type === "income").reduce((sum, t) => sum + Number(t.amount), 0);
-    const expense = bizTransactions.filter((t) => t.type === "expense").reduce((sum, t) => sum + Number(t.amount), 0);
+    const income = transactions.filter((t) => t.type === "income").reduce((sum, t) => sum + Number(t.amount), 0);
+    const expense = transactions.filter((t) => t.type === "expense").reduce((sum, t) => sum + Number(t.amount), 0);
     return { income, expense, balance: income - expense };
-  }, [bizTransactions]);
+  }, [transactions]);
 
-  const currency = activeBusiness?.currency ?? "CHF";
+  const recentTransactions = useMemo(() => {
+    return [...transactions]
+      .sort((a, b) => new Date(b.document_date ?? b.created_at).getTime() - new Date(a.document_date ?? a.created_at).getTime())
+      .slice(0, 5);
+  }, [transactions]);
+
   const greeting = profile?.full_name ? profile.full_name.split(" ")[0] : "there";
 
   async function handleCreateBusiness() {
@@ -79,33 +80,12 @@ export default function HomeClient({
       {/* Greeting */}
       <div>
         <h1 className="text-xl font-bold text-zinc-900">Hi {greeting} 👋</h1>
-        <p className="text-sm text-zinc-500 mt-0.5">Here&apos;s your overview</p>
+        <p className="text-sm text-zinc-500 mt-0.5">
+          {activeBusinesses.length > 0
+            ? `Combined across ${activeBusinesses.length} business${activeBusinesses.length > 1 ? "es" : ""}`
+            : "Here\u2019s your overview"}
+        </p>
       </div>
-
-      {/* Business selector */}
-      {businesses.length > 0 && (
-        <div className="flex gap-2 flex-wrap items-center">
-          {businesses.filter((b) => !b.archived).map((b) => (
-            <button
-              key={b.id}
-              onClick={() => setActiveBusiness(b)}
-              className={`rounded-full px-3 py-1 text-sm transition-colors ${
-                activeBusiness?.id === b.id
-                  ? "bg-brand text-white"
-                  : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
-              }`}
-            >
-              {b.name}
-            </button>
-          ))}
-          <button
-            onClick={() => setShowNewBusiness(true)}
-            className="rounded-full px-3 py-1 text-sm bg-zinc-100 text-zinc-500 hover:bg-zinc-200"
-          >
-            +
-          </button>
-        </div>
-      )}
 
       {businesses.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-zinc-300 p-8 text-center">
@@ -120,48 +100,48 @@ export default function HomeClient({
         </div>
       ) : (
         <>
-          {/* Summary cards */}
+          {/* Balance card */}
+          <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+            <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Net Balance</p>
+            <p className={`text-2xl font-bold mt-1 ${summary.balance >= 0 ? "text-green-600" : "text-red-600"}`}>
+              {summary.balance >= 0 ? "+" : "−"}{formatCurrency(Math.abs(summary.balance), "CHF")}
+            </p>
+          </div>
+
+          {/* Income / Expenses row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-zinc-200 bg-white p-4">
-              <p className="text-xs text-zinc-500">Income</p>
+              <p className="text-xs text-zinc-500">Total Income</p>
               <p className="text-lg font-semibold text-green-600 mt-1">
-                {formatCurrency(summary.income, currency)}
+                +{formatCurrency(summary.income, "CHF")}
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-4">
-              <p className="text-xs text-zinc-500">Expenses</p>
+              <p className="text-xs text-zinc-500">Total Expenses</p>
               <p className="text-lg font-semibold text-red-600 mt-1">
-                {formatCurrency(summary.expense, currency)}
+                −{formatCurrency(summary.expense, "CHF")}
               </p>
             </div>
           </div>
 
-          {/* Quick scan CTA */}
-          <Link
-            href="/dashboard/scan"
-            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-brand py-4 text-base font-medium text-white hover:bg-brand-hover transition-colors shadow-sm active:scale-[0.98]"
-          >
-            📸 Scan bill
-          </Link>
-
           {/* Recent transactions */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-semibold text-zinc-900">Recent</h2>
-              {bizTransactions.length > 0 && (
+              <h2 className="text-sm font-semibold text-zinc-900">Recent transactions</h2>
+              {transactions.length > 0 && (
                 <Link href="/dashboard/transactions" className="text-sm text-brand hover:text-brand-hover">
                   See all →
                 </Link>
               )}
             </div>
 
-            {bizTransactions.length === 0 ? (
+            {recentTransactions.length === 0 ? (
               <div className="rounded-xl border border-dashed border-zinc-300 p-6 text-center">
                 <p className="text-sm text-zinc-400">No transactions yet. Scan your first bill!</p>
               </div>
             ) : (
               <div className="space-y-2">
-                {bizTransactions.map((t) => (
+                {recentTransactions.map((t) => (
                   <div
                     key={t.id}
                     className="flex items-center justify-between rounded-xl border border-zinc-200 bg-white p-3.5"
