@@ -24,15 +24,22 @@ export default function LoginPage() {
       });
 
       if (authError) {
-        setError(authError.message);
+        if (authError.message === "Failed to fetch") {
+          setError(
+            "Cannot reach the auth server. The project may be paused — check the Supabase dashboard."
+          );
+        } else {
+          setError(authError.message);
+        }
         setLoading(false);
         return;
       }
 
       router.push("/dashboard");
       router.refresh();
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      setError(`Something went wrong: ${msg}`);
     } finally {
       setLoading(false);
     }
