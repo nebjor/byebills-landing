@@ -10,16 +10,10 @@ export default async function ProfilePage() {
 
   if (!user) redirect("/login");
 
-  const { data: profile } = await supabase
-    .from("users")
-    .select("*")
-    .eq("id", user.id)
-    .single();
-
-  const { data: businesses } = await supabase
-    .from("businesses")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const [{ data: profile }, { data: businesses }] = await Promise.all([
+    supabase.from("users").select("*").eq("id", user.id).single(),
+    supabase.from("businesses").select("*").order("created_at", { ascending: false }),
+  ]);
 
   return (
     <ProfileClient
