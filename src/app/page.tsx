@@ -30,10 +30,10 @@ export default function Home() {
         </nav>
 
         {/* Hero content */}
-        <section className="mx-auto max-w-5xl px-6 pt-16 pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section className="mx-auto max-w-5xl px-4 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column — text */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 rounded-[20px] border border-brand/30 bg-brand/12 px-4 py-1.5">
                 <span className="inline-block h-2 w-2 rounded-full bg-brand" />
@@ -41,7 +41,7 @@ export default function Home() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-[42px] sm:text-[52px] font-medium text-white leading-[1.05] tracking-[-1.5px]">
+              <h1 className="text-[32px] sm:text-[42px] md:text-[52px] font-medium text-white leading-[1.05] tracking-[-1px] sm:tracking-[-1.5px]">
                 Stop doing
                 <br />
                 bookkeeping.
@@ -50,13 +50,13 @@ export default function Home() {
               </h1>
 
               {/* Subline */}
-              <p className="max-w-[420px] text-[17px] text-white/55 leading-[1.6]">
+              <p className="max-w-[420px] text-[15px] sm:text-[17px] text-white/55 leading-[1.6]">
                 Snap any invoice or bill. AI reads it instantly. One tap to confirm &mdash; your
                 books update automatically. For all your businesses.
               </p>
 
               {/* CTA row */}
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                 <Link
                   href="/signup"
                   className="rounded-[10px] bg-brand px-6 py-3 text-[15px] font-medium text-brand-dark hover:brightness-110 transition"
@@ -72,7 +72,7 @@ export default function Home() {
               </div>
 
               {/* Social proof row */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="flex -space-x-2">
                   {[
                     { initials: "MK", bg: "#2d6a4f" },
@@ -89,7 +89,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <span className="text-[13px] text-white/40">
+                <span className="text-[12px] sm:text-[13px] text-white/40">
                   Free forever for personal use · No credit card needed
                 </span>
               </div>
