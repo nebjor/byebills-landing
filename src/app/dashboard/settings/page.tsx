@@ -10,5 +10,16 @@ export default async function SettingsPage() {
 
   if (!user) redirect("/login");
 
-  return <SettingsClient />;
+  const [{ data: profile }, { data: businesses }] = await Promise.all([
+    supabase.from("users").select("*").eq("id", user.id).single(),
+    supabase.from("businesses").select("*").order("created_at", { ascending: false }),
+  ]);
+
+  return (
+    <SettingsClient
+      user={user}
+      profile={profile}
+      businesses={(businesses ?? []).filter((b: any) => !b.archived)}
+    />
+  );
 }
