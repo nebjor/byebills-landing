@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -16,21 +17,44 @@ export default function SignupPage() {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-    setLoading(false);
-
-    if (!res.ok) {
-      setError(data.error);
+    const trimmedEmail = email.trim().toLowerCase();
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      setLoading(false);
       return;
     }
 
-    setSuccess(true);
+    try {
+      const supabase = createClient();
+      const { data, error: authError } = await supabase.auth.signUp({
+        email: trimmedEmail,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+
+      if (authError) {
+        setError(authError.message);
+        setLoading(false);
+        return;
+      }
+
+      // If email confirmation is disabled, user is immediately signed in
+      if (data.session) {
+        // Create user profile server-side
+        await fetch("/api/auth/signup", { method: "POST" });
+        router.push("/dashboard");
+        router.refresh();
+        return;
+      }
+
+      setSuccess(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (success) {

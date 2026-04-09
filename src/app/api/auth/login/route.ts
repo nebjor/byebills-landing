@@ -1,18 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
-  const supabase = await createClient();
-  const { email, password } = await request.json();
-
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
-  }
-
-  return NextResponse.json({ user: data.user });
+// Auth is now handled client-side via @supabase/ssr browser client.
+// This route is kept as a placeholder to avoid 404s on old clients.
+export async function POST() {
+  return NextResponse.json(
+    { error: "Login is handled client-side. Please refresh the page." },
+    { status: 410 }
+  );
 }
