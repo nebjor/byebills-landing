@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
@@ -11,18 +12,11 @@ export async function GET(request: NextRequest) {
 
     // Create user profile if this is a new user
     if (!error && data.user) {
-      const { data: existingProfile } = await supabase
-        .from("users")
-        .select("id")
-        .eq("id", data.user.id)
-        .single();
-
-      if (!existingProfile) {
-        await (supabase.from("users") as any).insert({
-          id: data.user.id,
-          email: data.user.email ?? null,
-        });
-      }
+      const admin = createServiceClient();
+      await (admin.from("users") as any).upsert(
+        { id: data.user.id, email: data.user.email ?? null },
+        { onConflict: "id" }
+      );
     }
   }
 

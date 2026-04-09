@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 import HomeClient from "./home-client";
 
 export default async function DashboardPage() {
@@ -9,6 +10,13 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
+
+  // Ensure user profile exists (safety net for first login)
+  const admin = createServiceClient();
+  await (admin.from("users") as any).upsert(
+    { id: user.id, email: user.email ?? null },
+    { onConflict: "id" }
+  );
 
   // Parallel fetch — all queries at once
   const [{ data: profile }, { data: businesses }, { data: transactions }] =

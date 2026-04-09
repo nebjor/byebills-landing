@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 
 // Server-side profile creation endpoint — called after client-side signup
 export async function POST(request: NextRequest) {
@@ -14,8 +15,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Upsert user profile (idempotent)
-  const { error } = await (supabase.from("users") as any).upsert(
+  // Upsert user profile using service role (bypasses RLS)
+  const admin = createServiceClient();
+  const { error } = await (admin.from("users") as any).upsert(
     { id: user.id, email: user.email ?? null },
     { onConflict: "id" }
   );
