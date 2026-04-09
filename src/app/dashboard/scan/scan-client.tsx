@@ -103,8 +103,14 @@ export default function ScanClient({ businesses }: { businesses: Business[] }) {
         method: "POST",
         body: formData,
       });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.error);
+
+      let result;
+      try {
+        result = await res.json();
+      } catch {
+        throw new Error(`Server error (${res.status}). Check Vercel logs.`);
+      }
+      if (!res.ok) throw new Error(result.error || "Extraction failed");
 
       setData(result.extraction);
       setConfidence(result.confidence);

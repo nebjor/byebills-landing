@@ -4,6 +4,15 @@ import { getLLMProvider } from "@/lib/llm";
 import crypto from "crypto";
 
 export async function POST(request: NextRequest) {
+  try {
+    return await handleExtract(request);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Internal server error";
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
+}
+
+async function handleExtract(request: NextRequest) {
   const supabase = await createClient();
 
   const {
