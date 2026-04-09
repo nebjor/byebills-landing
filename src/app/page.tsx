@@ -183,14 +183,14 @@ export default function Home() {
       {/* ===== BELOW HERO (light) ===== */}
 
       {/* Pain point */}
-      <section className="border-y border-zinc-200 bg-zinc-50">
+      <section className="border-y border-white/5 bg-[#0b1610]">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
+          <h2 className="text-2xl font-bold sm:text-3xl text-white">
             You have 3 side businesses.
             <br />
-            <span className="text-zinc-600">And zero time for spreadsheets.</span>
+            <span className="text-white/50">And zero time for spreadsheets.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-zinc-600 leading-relaxed">
+          <p className="mx-auto mt-4 max-w-lg text-white/55 leading-relaxed">
             You&apos;re juggling gigs, clients, and invoices across multiple businesses.
             Every receipt gets shoved in a drawer. Tax season is a nightmare.
             Sound familiar?
@@ -199,12 +199,13 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="mx-auto max-w-4xl px-6 py-20">
+      <section id="how-it-works" className="bg-brand-hero">
+        <div className="mx-auto max-w-4xl px-6 py-20">
         <div className="text-center mb-12">
           <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
             How it works
           </p>
-          <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
+          <h2 className="text-2xl font-bold sm:text-3xl text-white">
             From invoice to bookkeeping in 30 seconds
           </h2>
         </div>
@@ -214,8 +215,8 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               1
             </div>
-            <h3 className="font-semibold mb-1 text-zinc-900">Scan or upload</h3>
-            <p className="text-sm text-zinc-600">
+            <h3 className="font-semibold mb-1 text-white">Scan or upload</h3>
+            <p className="text-sm text-white/55">
               Point your camera at any invoice or bill. Or upload a PDF. Works with Swiss QR invoices,
               handwritten receipts, anything.
             </p>
@@ -224,8 +225,8 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               2
             </div>
-            <h3 className="font-semibold mb-1 text-zinc-900">AI reads it for you</h3>
-            <p className="text-sm text-zinc-600">
+            <h3 className="font-semibold mb-1 text-white">AI reads it for you</h3>
+            <p className="text-sm text-white/55">
               Our AI extracts the amount, vendor, date, reference number, and classifies it as
               income or expense. Instantly.
             </p>
@@ -234,72 +235,73 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               3
             </div>
-            <h3 className="font-semibold mb-1 text-zinc-900">Verify &amp; done</h3>
-            <p className="text-sm text-zinc-600">
-              Check the extracted data, tap confirm. It&apos;s saved and synced to your
-              Google Sheet automatically. No manual entry ever.
+            <h3 className="font-semibold mb-1 text-white">Verify &amp; done</h3>
+            <p className="text-sm text-white/55">
+              Check the extracted data, tap confirm. It&apos;s saved and synced
+              automatically. No manual entry ever.
             </p>
           </div>
+        </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="border-t border-zinc-100 bg-zinc-50">
+      <section className="border-t border-white/5 bg-[#0b1610]">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="text-center mb-12">
             <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
               Features
             </p>
-            <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
+            <h2 className="text-2xl font-bold sm:text-3xl text-white">
               Built for how you actually work
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">🏢</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">Multi-business</h3>
-              <p className="text-sm text-zinc-600">
-                Switch between businesses in one tap. Each has its own ledger,
-                integrations, and Google Sheet.
+              <h3 className="font-semibold mb-1 text-white">Multi-business</h3>
+              <p className="text-sm text-white/55">
+                Switch between businesses in one tap. Each has its own ledger
+                and integrations.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">📱</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">Mobile-first</h3>
-              <p className="text-sm text-zinc-600">
+              <h3 className="font-semibold mb-1 text-white">Mobile-first</h3>
+              <p className="text-sm text-white/55">
                 Designed for your phone. Scan invoices on the go, right from the
                 construction site, studio, or coffee shop.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">🔄</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">Google Sheets sync</h3>
-              <p className="text-sm text-zinc-600">
-                Every confirmed transaction lands in your spreadsheet automatically.
-                Your accountant will love you.
+              <h3 className="font-semibold mb-1 text-white">CSV export</h3>
+              <p className="text-sm text-white/55">
+                Export your transactions as CSV anytime. Hand it to your
+                accountant or import into any tool.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">🧠</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">AI-powered extraction</h3>
-              <p className="text-sm text-zinc-600">
+              <h3 className="font-semibold mb-1 text-white">AI-powered extraction</h3>
+              <p className="text-sm text-white/55">
                 State-of-the-art AI reads invoices, bills, and receipts in any language.
                 Handles messy handwriting too.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">🔍</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">Duplicate detection</h3>
-              <p className="text-sm text-zinc-600">
+              <h3 className="font-semibold mb-1 text-white">Duplicate detection</h3>
+              <p className="text-sm text-white/55">
                 Accidentally scan the same invoice twice? We catch it before it hits
                 your books.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-6">
+            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
               <div className="text-2xl mb-3">🇨🇭</div>
-              <h3 className="font-semibold mb-1 text-zinc-900">Swiss-ready</h3>
-              <p className="text-sm text-zinc-600">
+              <h3 className="font-semibold mb-1 text-white">Swiss-ready</h3>
+              <p className="text-sm text-white/55">
                 CHF default, Twint payments, Swiss QR invoice support.
                 Built in Zurich, for Swiss businesses.
               </p>
@@ -309,29 +311,31 @@ export default function Home() {
       </section>
 
       {/* Social proof / future */}
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl mb-4 text-zinc-900">
+      <section className="bg-brand-hero">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+        <h2 className="text-2xl font-bold sm:text-3xl mb-4 text-white">
           Coming soon
         </h2>
-        <p className="text-zinc-600 mb-8">
+        <p className="text-white/55 mb-8">
           We&apos;re building integrations with the tools Swiss businesses already use.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           {["Bexio", "Stripe", "Twint", "Swiss Banking APIs", "MWST Reporting"].map((name) => (
             <span
               key={name}
-              className="rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-sm text-zinc-700"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/60"
             >
               {name}
             </span>
           ))}
         </div>
+        </div>
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-zinc-100 bg-zinc-50">
+      <section className="border-t border-white/5 bg-[#0b1610]">
         <div className="mx-auto max-w-2xl px-6 py-20">
-          <h2 className="text-2xl font-bold text-center mb-10 text-zinc-900">FAQ</h2>
+          <h2 className="text-2xl font-bold text-center mb-10 text-white">FAQ</h2>
           <div className="space-y-6">
             {[
               {
@@ -344,7 +348,7 @@ export default function Home() {
               },
               {
                 q: "I have multiple side businesses. Can I keep them separate?",
-                a: "Absolutely. Multi-business is a core feature. Each business gets its own ledger and Google Sheet sync.",
+                a: "Absolutely. Multi-business is a core feature. Each business gets its own ledger and CSV export.",
               },
               {
                 q: "Where is my data stored?",
@@ -355,9 +359,9 @@ export default function Home() {
                 a: "ByeBills doesn't replace an accountant, but it makes their job (and yours) much easier by keeping your books organized automatically.",
               },
             ].map(({ q, a }) => (
-              <div key={q} className="border-b border-zinc-200 pb-5">
-                <h3 className="font-medium mb-1 text-zinc-900">{q}</h3>
-                <p className="text-sm text-zinc-600">{a}</p>
+              <div key={q} className="border-b border-white/10 pb-5">
+                <h3 className="font-medium mb-1 text-white">{q}</h3>
+                <p className="text-sm text-white/55">{a}</p>
               </div>
             ))}
           </div>
@@ -365,24 +369,26 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-zinc-900">
+      <section className="bg-brand-hero">
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+        <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-white">
           Your invoices won&apos;t scan themselves.
         </h2>
-        <p className="text-zinc-600 mb-8">
+        <p className="text-white/55 mb-8">
           Well, actually — with ByeBills they kind of do.
         </p>
         <Link
           href="/signup"
-          className="inline-flex rounded-full bg-brand px-8 py-3 text-sm font-semibold text-white hover:bg-brand-hover transition-colors shadow-lg shadow-brand/20"
+          className="inline-flex rounded-[10px] bg-brand px-8 py-3 text-sm font-medium text-brand-dark hover:brightness-110 transition shadow-lg shadow-brand/20"
         >
           Start scanning for free
         </Link>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-100 bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col items-center gap-2 text-xs text-zinc-400">
+      <footer className="border-t border-white/5 bg-[#0b1610]">
+        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col items-center gap-2 text-xs text-white/40">
           <span className="font-semibold text-brand">ByeBills</span>
           <span>Invoice Scanner &amp; Bookkeeper for Swiss Side-Hustlers</span>
           <span>Built in Zurich 🇨🇭</span>
