@@ -183,14 +183,14 @@ export default function Home() {
       {/* ===== BELOW HERO (light) ===== */}
 
       {/* Pain point */}
-      <section className="border-y border-zinc-100 bg-zinc-50">
+      <section className="border-y border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl">
+          <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
             You have 3 side businesses.
             <br />
-            <span className="text-zinc-400">And zero time for spreadsheets.</span>
+            <span className="text-zinc-600">And zero time for spreadsheets.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-zinc-500 leading-relaxed">
+          <p className="mx-auto mt-4 max-w-lg text-zinc-600 leading-relaxed">
             You&apos;re juggling gigs, clients, and invoices across multiple businesses.
             Every receipt gets shoved in a drawer. Tax season is a nightmare.
             Sound familiar?
@@ -201,10 +201,10 @@ export default function Home() {
       {/* How it works */}
       <section id="how-it-works" className="mx-auto max-w-4xl px-6 py-20">
         <div className="text-center mb-12">
-          <p className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-2">
+          <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
             How it works
           </p>
-          <h2 className="text-2xl font-bold sm:text-3xl">
+          <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
             From invoice to bookkeeping in 30 seconds
           </h2>
         </div>
@@ -214,8 +214,8 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               1
             </div>
-            <h3 className="font-semibold mb-1">Scan or upload</h3>
-            <p className="text-sm text-zinc-500">
+            <h3 className="font-semibold mb-1 text-zinc-900">Scan or upload</h3>
+            <p className="text-sm text-zinc-600">
               Point your camera at any invoice or bill. Or upload a PDF. Works with Swiss QR invoices,
               handwritten receipts, anything.
             </p>
@@ -224,8 +224,8 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               2
             </div>
-            <h3 className="font-semibold mb-1">AI reads it for you</h3>
-            <p className="text-sm text-zinc-500">
+            <h3 className="font-semibold mb-1 text-zinc-900">AI reads it for you</h3>
+            <p className="text-sm text-zinc-600">
               Our AI extracts the amount, vendor, date, reference number, and classifies it as
               income or expense. Instantly.
             </p>
@@ -234,8 +234,8 @@ export default function Home() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
               3
             </div>
-            <h3 className="font-semibold mb-1">Verify &amp; done</h3>
-            <p className="text-sm text-zinc-500">
+            <h3 className="font-semibold mb-1 text-zinc-900">Verify &amp; done</h3>
+            <p className="text-sm text-zinc-600">
               Check the extracted data, tap confirm. It&apos;s saved and synced to your
               Google Sheet automatically. No manual entry ever.
             </p>
@@ -247,10 +247,10 @@ export default function Home() {
       <section className="border-t border-zinc-100 bg-zinc-50">
         <div className="mx-auto max-w-4xl px-6 py-20">
           <div className="text-center mb-12">
-            <p className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-2">
+            <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
               Features
             </p>
-            <h2 className="text-2xl font-bold sm:text-3xl">
+            <h2 className="text-2xl font-bold sm:text-3xl text-zinc-900">
               Built for how you actually work
             </h2>
           </div>
@@ -258,48 +258,48 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">🏢</div>
-              <h3 className="font-semibold mb-1">Multi-business</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">Multi-business</h3>
+              <p className="text-sm text-zinc-600">
                 Switch between businesses in one tap. Each has its own ledger,
                 integrations, and Google Sheet.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">📱</div>
-              <h3 className="font-semibold mb-1">Mobile-first</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">Mobile-first</h3>
+              <p className="text-sm text-zinc-600">
                 Designed for your phone. Scan invoices on the go, right from the
                 construction site, studio, or coffee shop.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">🔄</div>
-              <h3 className="font-semibold mb-1">Google Sheets sync</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">Google Sheets sync</h3>
+              <p className="text-sm text-zinc-600">
                 Every confirmed transaction lands in your spreadsheet automatically.
                 Your accountant will love you.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">🧠</div>
-              <h3 className="font-semibold mb-1">AI-powered extraction</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">AI-powered extraction</h3>
+              <p className="text-sm text-zinc-600">
                 State-of-the-art AI reads invoices, bills, and receipts in any language.
                 Handles messy handwriting too.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">🔍</div>
-              <h3 className="font-semibold mb-1">Duplicate detection</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">Duplicate detection</h3>
+              <p className="text-sm text-zinc-600">
                 Accidentally scan the same invoice twice? We catch it before it hits
                 your books.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 bg-white p-6">
               <div className="text-2xl mb-3">🇨🇭</div>
-              <h3 className="font-semibold mb-1">Swiss-ready</h3>
-              <p className="text-sm text-zinc-500">
+              <h3 className="font-semibold mb-1 text-zinc-900">Swiss-ready</h3>
+              <p className="text-sm text-zinc-600">
                 CHF default, Twint payments, Swiss QR invoice support.
                 Built in Zurich, for Swiss businesses.
               </p>
@@ -310,17 +310,17 @@ export default function Home() {
 
       {/* Social proof / future */}
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl mb-4">
+        <h2 className="text-2xl font-bold sm:text-3xl mb-4 text-zinc-900">
           Coming soon
         </h2>
-        <p className="text-zinc-500 mb-8">
+        <p className="text-zinc-600 mb-8">
           We&apos;re building integrations with the tools Swiss businesses already use.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           {["Bexio", "Stripe", "Twint", "Swiss Banking APIs", "MWST Reporting"].map((name) => (
             <span
               key={name}
-              className="rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-sm text-zinc-500"
+              className="rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-sm text-zinc-700"
             >
               {name}
             </span>
@@ -331,7 +331,7 @@ export default function Home() {
       {/* FAQ */}
       <section className="border-t border-zinc-100 bg-zinc-50">
         <div className="mx-auto max-w-2xl px-6 py-20">
-          <h2 className="text-2xl font-bold text-center mb-10">FAQ</h2>
+          <h2 className="text-2xl font-bold text-center mb-10 text-zinc-900">FAQ</h2>
           <div className="space-y-6">
             {[
               {
@@ -356,8 +356,8 @@ export default function Home() {
               },
             ].map(({ q, a }) => (
               <div key={q} className="border-b border-zinc-200 pb-5">
-                <h3 className="font-medium mb-1">{q}</h3>
-                <p className="text-sm text-zinc-500">{a}</p>
+                <h3 className="font-medium mb-1 text-zinc-900">{q}</h3>
+                <p className="text-sm text-zinc-600">{a}</p>
               </div>
             ))}
           </div>
@@ -366,10 +366,10 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-3xl font-bold sm:text-4xl mb-4">
+        <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-zinc-900">
           Your invoices won&apos;t scan themselves.
         </h2>
-        <p className="text-zinc-500 mb-8">
+        <p className="text-zinc-600 mb-8">
           Well, actually — with ByeBills they kind of do.
         </p>
         <Link
