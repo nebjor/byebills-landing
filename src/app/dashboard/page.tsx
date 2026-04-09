@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import DashboardClient from "./dashboard-client";
+import HomeClient from "./home-client";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -10,21 +10,28 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
-  // Fetch user's businesses
+  const { data: profile } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
   const { data: businesses } = await supabase
     .from("businesses")
     .select("*")
     .order("created_at", { ascending: false });
 
-  // Fetch all transactions (filtered client-side per business)
+  // Recent 5 transactions for the home overview
   const { data: transactions } = await supabase
     .from("transactions")
     .select("*")
-    .order("document_date", { ascending: false });
+    .order("document_date", { ascending: false })
+    .limit(5);
 
   return (
-    <DashboardClient
+    <HomeClient
       user={user}
+      profile={profile}
       businesses={businesses ?? []}
       transactions={transactions ?? []}
     />
