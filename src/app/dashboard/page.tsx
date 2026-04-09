@@ -23,7 +23,7 @@ export default async function DashboardPage() {
     await Promise.all([
       supabase.from("users").select("*").eq("id", user.id).single(),
       supabase.from("businesses").select("*").order("created_at", { ascending: false }),
-      supabase.from("transactions").select("*").order("document_date", { ascending: false }).limit(5),
+      supabase.from("transactions").select("*").order("document_date", { ascending: false }),
     ]);
 
   return (
