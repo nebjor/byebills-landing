@@ -44,8 +44,14 @@ export async function POST(request: NextRequest) {
   const mimeType = file.type;
 
   // Extract invoice data via LLM
-  const provider = getLLMProvider();
-  const extraction = await provider.extractInvoice(base64, mimeType);
+  let extraction;
+  try {
+    const provider = getLLMProvider();
+    extraction = await provider.extractInvoice(base64, mimeType);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "LLM extraction failed";
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 
   // Generate duplicate hash
   const hashInput = [
