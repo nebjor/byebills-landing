@@ -42,9 +42,6 @@ export default function HomeClient({
   const [newBusinessName, setNewBusinessName] = useState("");
   const [newBusinessCurrency, setNewBusinessCurrency] = useState("CHF");
   const [creating, setCreating] = useState(false);
-  const [businessMenu, setBusinessMenu] = useState<string | null>(null);
-  const [confirmDelete, setConfirmDelete] = useState<Business | null>(null);
-  const [deleting, setDeleting] = useState(false);
   const router = useRouter();
 
   const bizTransactions = useMemo(() => {
@@ -77,30 +74,8 @@ export default function HomeClient({
     router.refresh();
   }
 
-  async function handleArchiveBusiness(biz: Business) {
-    const supabase = createClient();
-    await (supabase.from("businesses") as any).update({ archived: !biz.archived }).eq("id", biz.id);
-    setBusinessMenu(null);
-    if (activeBusiness?.id === biz.id) setActiveBusiness(null);
-    router.refresh();
-  }
-
-  async function handleDeleteBusiness() {
-    if (!confirmDelete) return;
-    setDeleting(true);
-    const supabase = createClient();
-    // Delete related transactions first, then the business
-    await supabase.from("transactions").delete().eq("business_id", confirmDelete.id);
-    await supabase.from("businesses").delete().eq("id", confirmDelete.id);
-    setConfirmDelete(null);
-    setDeleting(false);
-    if (activeBusiness?.id === confirmDelete.id) setActiveBusiness(businesses.find(b => b.id !== confirmDelete.id) ?? null);
-    setBusinessMenu(null);
-    router.refresh();
-  }
-
   return (
-    <div className="space-y-5" onClick={() => businessMenu && setBusinessMenu(null)}>
+    <div className="space-y-5">
       {/* Greeting */}
       <div>
         <h1 className="text-xl font-bold text-zinc-900">Hi {greeting} 👋</h1>
@@ -110,51 +85,18 @@ export default function HomeClient({
       {/* Business selector */}
       {businesses.length > 0 && (
         <div className="flex gap-2 flex-wrap items-center">
-          {businesses.map((b) => (
-            <div key={b.id} className="relative group">
-              <button
-                onClick={() => setActiveBusiness(b)}
-                className={`rounded-full px-3 py-1 text-sm transition-colors ${
-                  activeBusiness?.id === b.id
-                    ? "bg-brand text-white"
-                    : b.archived
-                    ? "bg-zinc-50 text-zinc-400 line-through"
-                    : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
-                }`}
-              >
-                {b.name}
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setBusinessMenu(businessMenu === b.id ? null : b.id);
-                }}
-                className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-zinc-200 text-zinc-500 text-[10px] flex items-center justify-center hover:bg-zinc-300 opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
-                style={{ opacity: businessMenu === b.id ? 1 : undefined }}
-                onFocus={() => setBusinessMenu(b.id)}
-              >
-                ⋯
-              </button>
-              {businessMenu === b.id && (
-                <div className="absolute top-8 left-0 z-50 w-40 rounded-xl border border-zinc-200 bg-white shadow-lg py-1 animate-in fade-in">
-                  <button
-                    onClick={() => handleArchiveBusiness(b)}
-                    className="w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
-                  >
-                    {b.archived ? "Unarchive" : "Archive"}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setConfirmDelete(b);
-                      setBusinessMenu(null);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
-            </div>
+          {businesses.filter((b) => !b.archived).map((b) => (
+            <button
+              key={b.id}
+              onClick={() => setActiveBusiness(b)}
+              className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                activeBusiness?.id === b.id
+                  ? "bg-brand text-white"
+                  : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
+              }`}
+            >
+              {b.name}
+            </button>
           ))}
           <button
             onClick={() => setShowNewBusiness(true)}
