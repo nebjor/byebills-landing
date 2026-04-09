@@ -253,40 +253,6 @@ export default function HomeClient({
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
-      {confirmDelete && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl space-y-4">
-            <div>
-              <h2 className="text-lg font-bold text-zinc-900">Delete &quot;{confirmDelete.name}&quot;?</h2>
-              <p className="text-sm text-zinc-500 mt-2">
-                This will permanently delete the business and all its transactions. This action cannot be undone.
-              </p>
-              <div className="mt-3 rounded-xl bg-amber-50 border border-amber-200 p-3">
-                <p className="text-sm text-amber-800">
-                  💡 <strong>Tip:</strong> You can also <button onClick={() => { handleArchiveBusiness(confirmDelete); setConfirmDelete(null); }} className="underline font-medium hover:text-amber-900">archive this business</button> instead — it will be hidden but you can restore it later.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-3 pt-1">
-              <button
-                onClick={() => setConfirmDelete(null)}
-                className="flex-1 rounded-xl border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleDeleteBusiness}
-                disabled={deleting}
-                className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-50"
-              >
-                {deleting ? "Deleting..." : "Delete forever"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
