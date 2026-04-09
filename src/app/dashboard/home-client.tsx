@@ -124,6 +124,30 @@ export default function HomeClient({
             </div>
           </div>
 
+          {/* Compliance alert */}
+          {summary.income >= 100_000 ? (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+              <p className="text-sm font-semibold text-red-800">⚠️ MWST Registration Required</p>
+              <p className="text-xs text-red-700 mt-1">
+                Your income exceeds CHF 100,000. You must register for MWST (VAT) within 30 days.
+              </p>
+            </div>
+          ) : summary.income >= 2_500 ? (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="text-sm font-semibold text-amber-800">📋 Ausgleichskasse</p>
+              <p className="text-xs text-amber-700 mt-1">
+                Your side-hustle income exceeds CHF 2,500. Consider registering with your Ausgleichskasse (AHV).
+              </p>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-green-200 bg-green-50 p-4">
+              <p className="text-sm font-semibold text-green-800">✅ All good</p>
+              <p className="text-xs text-green-700 mt-1">
+                Below CHF 2,500 income — no registration needed yet.
+              </p>
+            </div>
+          )}
+
           {/* Recent transactions */}
           <div>
             <div className="flex items-center justify-between mb-3">
