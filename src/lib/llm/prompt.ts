@@ -24,6 +24,7 @@ Rules:
 - If the document is sent BY the business (they expect payment), it's "income" with document_type "invoice"
 - When in doubt about direction, default to "expense" / "bill" (most common scan use case)
 - Extract amounts as plain numbers without currency symbols
-- Use ISO date format YYYY-MM-DD
+- Dates are printed in DD.MM.YYYY (Swiss/European) format — read day, month and the EXACT 4-digit year as printed; never guess or default the year, and if only two year digits are shown treat "YY" as 20YY
+- Output document_date and due_date as ISO YYYY-MM-DD; a date must never be in the future. On faded/crumpled thermal receipts a "6" can look like a "0" — if the year is ambiguous, choose the most recent plausible year
 - Set confidence based on how clear/readable the document is
 - Return ONLY valid JSON, no markdown fences, no explanation`;

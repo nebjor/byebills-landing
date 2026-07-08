@@ -1,399 +1,350 @@
 import Link from "next/link";
 
+/* Warm palette (kept local so the app's dark theme elsewhere is untouched) */
+const CREAM = "#FBF4E6";
+const CARD = "#FFFDF8";
+const INK = "#15181D";
+const MUTED = "#5C6570";
+const BORDER = "#EFE6D2";
+
+function AppleGlyph() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M16.365 1.43c0 1.14-.42 2.2-1.12 2.99-.75.86-1.98 1.52-3.02 1.44-.13-1.09.44-2.25 1.11-2.99.76-.82 2.07-1.44 3.03-1.44zM20.5 17.2c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.53-4.12 3.54-1.54.02-1.94-1.01-4.03-1-2.09.01-2.53 1.02-4.07 1-1.73-.02-3.06-1.78-4.05-3.35C-.02 17.86-.3 12.9 1.36 10.4c1.18-1.79 3.04-2.84 4.79-2.84 1.78 0 2.9 1 4.37 1 1.43 0 2.3-1 4.36-1 1.56 0 3.21.85 4.39 2.32-3.86 2.11-3.23 7.62.83 9.32z" />
+    </svg>
+  );
+}
+
+function Candle() {
+  // Small byeBills icon tile
+  return (
+    <span className="inline-flex h-9 w-9 items-center justify-center rounded-[10px]" style={{ backgroundColor: "#8B5CF6" }}>
+      <img src="/billie.png" alt="" className="h-7 w-7 object-contain" />
+    </span>
+  );
+}
+
 export default function Home() {
   return (
-    <>
-      {/* ===== HERO (dark) ===== */}
-      <div className="bg-brand-hero">
-        {/* Nav */}
-        <nav className="sticky top-0 z-40 bg-brand-hero/90 backdrop-blur-lg">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <a href="#" className="text-[18px] font-medium tracking-tight">
-              <span className="text-white">Bye</span>
-              <span className="text-brand">Bills</span>
-            </a>
-            <div className="flex items-center gap-6">
-              <Link href="#how-it-works" className="hidden sm:inline text-[14px] text-white/55 hover:text-white/80 transition-colors">
-                How it works
-              </Link>
-              <Link href="#pricing" className="hidden sm:inline text-[14px] text-white/55 hover:text-white/80 transition-colors">
-                Pricing
-              </Link>
-              <Link
-                href="/signup"
-                className="rounded-lg bg-brand px-[18px] py-2 text-[14px] font-medium text-brand-dark hover:brightness-110 transition"
+    <div style={{ backgroundColor: CREAM, color: INK, fontFamily: "var(--font-nunito)" }} className="min-h-screen">
+      {/* ===== HERO (full viewport) ===== */}
+      <section className="mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 py-12">
+        <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          {/* Left */}
+          <div>
+            <div className="mb-6 flex items-center gap-2.5">
+              <Candle />
+              <span className="text-[18px] font-bold">byeBills</span>
+            </div>
+
+            <h1 className="text-[52px] font-extrabold leading-[0.98] tracking-[-2.5px] sm:text-[64px] lg:text-[72px]">
+              Meet Billie,
+              <br />
+              your pocket
+              <br />
+              bookkeeper
+            </h1>
+
+            <p className="mt-6 max-w-[460px] text-[22px] leading-relaxed" style={{ color: MUTED }}>
+              Snap a receipt. Billie does the rest.
+            </p>
+
+            <div id="download" className="mt-9">
+              <a
+                href="#"
+                className="inline-flex items-center gap-2.5 rounded-full bg-brand px-8 py-4 text-[18px] font-bold text-white shadow-md transition hover:brightness-105"
               >
-                Get started free
-              </Link>
+                <AppleGlyph /> Download on iOS
+              </a>
             </div>
           </div>
-        </nav>
 
-        {/* Hero content */}
-        <section className="mx-auto max-w-5xl px-4 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left column — text */}
-            <div className="space-y-6 sm:space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-[20px] border border-brand/30 bg-brand/12 px-4 py-1.5">
-                <span className="inline-block h-2 w-2 rounded-full bg-brand" />
-                <span className="text-[12px] font-medium text-brand">Built for Swiss side-hustlers</span>
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-[32px] sm:text-[42px] md:text-[52px] font-medium text-white leading-[1.05] tracking-[-1px] sm:tracking-[-1.5px]">
-                Stop doing
-                <br />
-                bookkeeping.
-                <br />
-                <span className="text-brand">Start scanning.</span>
-              </h1>
-
-              {/* Subline */}
-              <p className="max-w-[420px] text-[15px] sm:text-[17px] text-white/55 leading-[1.6]">
-                Snap any invoice or bill. AI reads it instantly. One tap to confirm &mdash; your
-                books update automatically. For all your businesses.
-              </p>
-
-              {/* CTA row */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                <Link
-                  href="/signup"
-                  className="rounded-[10px] bg-brand px-6 py-3 text-[15px] font-medium text-brand-dark hover:brightness-110 transition"
-                >
-                  Start scanning free
-                </Link>
-                <Link
-                  href="#how-it-works"
-                  className="text-[14px] text-white/45 hover:text-white/70 transition-colors"
-                >
-                  See how it works →
-                </Link>
-              </div>
-
-              {/* Social proof row */}
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="flex -space-x-2">
-                  {[
-                    { initials: "MK", bg: "#2d6a4f" },
-                    { initials: "AS", bg: "#1b4332" },
-                    { initials: "JR", bg: "#40916c" },
-                    { initials: "LP", bg: "#52b788" },
-                  ].map((a) => (
-                    <div
-                      key={a.initials}
-                      className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-hero text-[10px] font-medium text-white"
-                      style={{ backgroundColor: a.bg }}
-                    >
-                      {a.initials}
-                    </div>
-                  ))}
-                </div>
-                <span className="text-[12px] sm:text-[13px] text-white/40">
-                  Free forever for personal use · No credit card needed
-                </span>
-              </div>
-
-              {/* Step indicators */}
-              <div className="flex items-center gap-3">
-                {[
-                  { num: "1", label: "Scan" },
-                  { num: "2", label: "AI extracts" },
-                  { num: "3", label: "Booked" },
-                ].map((step, i) => (
-                  <div key={step.num} className="flex items-center gap-3">
-                    {i > 0 && <span className="text-[12px] text-white/20">→</span>}
-                    <div className="flex items-center gap-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full border border-brand/30 bg-brand/15 text-[11px] text-brand font-medium">
-                        {step.num}
-                      </span>
-                      <span className="text-[12px] text-white/35">{step.label}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right column — phone mockup */}
-            <div className="hidden lg:flex justify-center">
-              <div className="w-[240px] rounded-[28px] border border-brand/20 bg-[#1a2820] p-3">
-                <div className="rounded-[20px] bg-[#0d1410] overflow-hidden">
-                  {/* Status bar */}
-                  <div className="flex items-center justify-between px-4 pt-3 pb-1">
-                    <span className="text-[11px] text-white/50 font-medium">9:41</span>
-                    <span className="text-white/50 text-[10px]">•••</span>
-                  </div>
-
-                  {/* Header */}
-                  <div className="bg-[#111f17] px-4 py-3">
-                    <p className="text-[13px] font-medium text-white">Scan invoice</p>
-                    <p className="text-[11px] text-white/35">Point camera at any bill or invoice</p>
-                  </div>
-
-                  {/* Scan area */}
-                  <div className="px-4 py-4">
-                    <div className="relative h-[120px] rounded-xl border-[1.5px] border-dashed border-brand/40 flex flex-col items-center justify-center">
-                      {/* Corner brackets */}
-                      <svg className="absolute top-2 left-2 h-4 w-4 text-brand" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 6V2a1 1 0 0 1 1-1h4" /><path d="M1 10v4a1 1 0 0 0 1 1h4" /></svg>
-                      <svg className="absolute top-2 right-2 h-4 w-4 text-brand" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 6V2a1 1 0 0 0-1-1h-4" /><path d="M15 10v4a1 1 0 0 1-1 1h-4" /></svg>
-
-                      {/* Camera icon */}
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 mb-2">
-                        <svg className="h-5 w-5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" /><path d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" /></svg>
-                      </div>
-                      <span className="text-[11px] text-white/40">Scanning…</span>
-                    </div>
-                  </div>
-
-                  {/* AI extracted card */}
-                  <div className="px-4 pb-3">
-                    <div className="rounded-[10px] border border-brand/15 bg-[#111f17] p-3 space-y-2">
-                      <p className="text-[10px] font-medium text-brand">AI extracted</p>
-                      <div className="space-y-1.5">
-                        {[
-                          { label: "Vendor", value: "Migros AG", highlight: false },
-                          { label: "Amount", value: "CHF 284.50", highlight: true },
-                          { label: "Date", value: "08.04.2026", highlight: false },
-                          { label: "Type", value: "Expense", highlight: false },
-                        ].map((row) => (
-                          <div key={row.label} className="flex justify-between">
-                            <span className="text-[11px] text-white/35">{row.label}</span>
-                            <span className={`text-[11px] font-medium ${row.highlight ? "text-brand" : "text-white/80"}`}>
-                              {row.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Confirm button */}
-                  <div className="px-4 pb-4">
-                    <div className="w-full rounded-lg bg-brand py-2.5 text-center text-[12px] font-medium text-brand-dark">
-                      Confirm &amp; book
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* ===== BELOW HERO (light) ===== */}
-
-      {/* Pain point */}
-      <section className="border-y border-white/5 bg-[#0b1610]">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl text-white">
-            You have 3 side businesses.
-            <br />
-            <span className="text-white/50">And zero time for spreadsheets.</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-white/55 leading-relaxed">
-            You&apos;re juggling gigs, clients, and invoices across multiple businesses.
-            Every receipt gets shoved in a drawer. Tax season is a nightmare.
-            Sound familiar?
-          </p>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section id="how-it-works" className="bg-brand-hero">
-        <div className="mx-auto max-w-4xl px-6 py-20">
-        <div className="text-center mb-12">
-          <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
-            How it works
-          </p>
-          <h2 className="text-2xl font-bold sm:text-3xl text-white">
-            From invoice to bookkeeping in 30 seconds
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
-              1
-            </div>
-            <h3 className="font-semibold mb-1 text-white">Scan or upload</h3>
-            <p className="text-sm text-white/55">
-              Point your camera at any invoice or bill. Or upload a PDF. Works with Swiss QR invoices,
-              handwritten receipts, anything.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
-              2
-            </div>
-            <h3 className="font-semibold mb-1 text-white">AI reads it for you</h3>
-            <p className="text-sm text-white/55">
-              Our AI extracts the amount, vendor, date, reference number, and classifies it as
-              income or expense. Instantly.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand text-white text-xl font-bold shadow-lg">
-              3
-            </div>
-            <h3 className="font-semibold mb-1 text-white">Verify &amp; done</h3>
-            <p className="text-sm text-white/55">
-              Check the extracted data, tap confirm. It&apos;s saved and synced
-              automatically. No manual entry ever.
-            </p>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="border-t border-white/5 bg-[#0b1610]">
-        <div className="mx-auto max-w-4xl px-6 py-20">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-brand uppercase tracking-wider mb-2">
-              Features
-            </p>
-            <h2 className="text-2xl font-bold sm:text-3xl text-white">
-              Built for how you actually work
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">🏢</div>
-              <h3 className="font-semibold mb-1 text-white">Multi-business</h3>
-              <p className="text-sm text-white/55">
-                Switch between businesses in one tap. Each has its own ledger
-                and integrations.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">📱</div>
-              <h3 className="font-semibold mb-1 text-white">Mobile-first</h3>
-              <p className="text-sm text-white/55">
-                Designed for your phone. Scan invoices on the go, right from the
-                construction site, studio, or coffee shop.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">🔄</div>
-              <h3 className="font-semibold mb-1 text-white">CSV export</h3>
-              <p className="text-sm text-white/55">
-                Export your transactions as CSV anytime. Hand it to your
-                accountant or import into any tool.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">🧠</div>
-              <h3 className="font-semibold mb-1 text-white">AI-powered extraction</h3>
-              <p className="text-sm text-white/55">
-                State-of-the-art AI reads invoices, bills, and receipts in any language.
-                Handles messy handwriting too.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">🔍</div>
-              <h3 className="font-semibold mb-1 text-white">Duplicate detection</h3>
-              <p className="text-sm text-white/55">
-                Accidentally scan the same invoice twice? We catch it before it hits
-                your books.
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111f17] p-6">
-              <div className="text-2xl mb-3">🇨🇭</div>
-              <h3 className="font-semibold mb-1 text-white">Swiss-ready</h3>
-              <p className="text-sm text-white/55">
-                CHF default, Twint payments, Swiss QR invoice support.
-                Built in Zurich, for Swiss businesses.
-              </p>
-            </div>
+          {/* Right — phone mockup + Billie */}
+          <div className="relative flex justify-center">
+            <PhoneMock />
+            {/* Billie peeking at the bottom-left of the phone */}
+            <img
+              src="/billie.png"
+              alt="Billie the flying invoice"
+              className="absolute -bottom-4 left-2 h-28 w-28 object-contain drop-shadow-xl sm:left-6"
+            />
           </div>
         </div>
       </section>
 
-      {/* Social proof / future */}
-      <section className="bg-brand-hero">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl mb-4 text-white">
-          Coming soon
-        </h2>
-        <p className="text-white/55 mb-8">
-          We&apos;re building integrations with the tools Swiss businesses already use.
+      {/* ===== SIMPLE BY DESIGN ===== */}
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <h2 className="text-[30px] font-extrabold tracking-[-1px] sm:text-[38px]">Simple by design</h2>
+        <p className="mt-2 text-[17px]" style={{ color: MUTED }}>
+          Everything you need to stay on top of your books. Nothing you don&apos;t.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {["Bexio", "Stripe", "Twint", "Swiss Banking APIs", "MWST Reporting"].map((name) => (
-            <span
-              key={name}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/60"
-            >
-              {name}
+
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <FeatureCard
+            preview={<ScanPreview />}
+            title="Scan your receipts & bills"
+            desc="Point your camera at any receipt or invoice. Billie reads the amount, date and vendor in seconds."
+          />
+          <FeatureCard
+            preview={<BooksPreview />}
+            title="Let Billie do your books"
+            desc="Every scan is sorted into income and expenses automatically — across all of your side hustles."
+          />
+          <FeatureCard
+            preview={<ExportPreview />}
+            title="Export for taxes & more"
+            desc="Download a clean CSV with your receipt photos, ready for your accountant or the tax office."
+          />
+        </div>
+      </section>
+
+      {/* ===== FOOTER ===== */}
+      <footer style={{ borderColor: BORDER }} className="border-t">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
+          <div className="flex items-center gap-2">
+            <span className="text-[16px] font-extrabold">byeBills</span>
+            <span className="text-[14px]" style={{ color: MUTED }}>
+              · Your books, sorted
             </span>
-          ))}
-        </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-t border-white/5 bg-[#0b1610]">
-        <div className="mx-auto max-w-2xl px-6 py-20">
-          <h2 className="text-2xl font-bold text-center mb-10 text-white">FAQ</h2>
-          <div className="space-y-6">
-            {[
-              {
-                q: "Is it really free?",
-                a: "Yes. The core scanning and bookkeeping features are free. We'll add premium features later for power users.",
-              },
-              {
-                q: "Does it work with Swiss QR invoices?",
-                a: "Yes! Our AI can read Swiss QR invoices, traditional invoices, handwritten receipts, and PDFs in any language.",
-              },
-              {
-                q: "I have multiple side businesses. Can I keep them separate?",
-                a: "Absolutely. Multi-business is a core feature. Each business gets its own ledger and CSV export.",
-              },
-              {
-                q: "Where is my data stored?",
-                a: "In Supabase (PostgreSQL) hosted in Zurich, Switzerland. Your data stays in Switzerland.",
-              },
-              {
-                q: "Do I need an accountant?",
-                a: "ByeBills doesn't replace an accountant, but it makes their job (and yours) much easier by keeping your books organized automatically.",
-              },
-            ].map(({ q, a }) => (
-              <div key={q} className="border-b border-white/10 pb-5">
-                <h3 className="font-medium mb-1 text-white">{q}</h3>
-                <p className="text-sm text-white/55">{a}</p>
-              </div>
-            ))}
           </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="bg-brand-hero">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h2 className="text-3xl font-bold sm:text-4xl mb-4 text-white">
-          Your invoices won&apos;t scan themselves.
-        </h2>
-        <p className="text-white/55 mb-8">
-          Well, actually — with ByeBills they kind of do.
-        </p>
-        <Link
-          href="/signup"
-          className="inline-flex rounded-[10px] bg-brand px-8 py-3 text-sm font-medium text-brand-dark hover:brightness-110 transition shadow-lg shadow-brand/20"
-        >
-          Start scanning for free
-        </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 bg-[#0b1610]">
-        <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col items-center gap-2 text-xs text-white/40">
-          <span className="font-semibold text-brand">ByeBills</span>
-          <span>Invoice Scanner &amp; Bookkeeper for Swiss Side-Hustlers</span>
-          <span>Built in Zurich 🇨🇭</span>
+          <div className="flex items-center gap-6 text-[14px]" style={{ color: MUTED }}>
+            <Link href="/privacy" className="transition hover:text-[color:var(--color-brand)]">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="transition hover:text-[color:var(--color-brand)]">
+              Terms of Use
+            </Link>
+          </div>
         </div>
       </footer>
-    </>
+    </div>
+  );
+}
+
+/* ---------- pieces ---------- */
+
+function FeatureCard({
+  preview,
+  title,
+  desc,
+}: {
+  preview: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="rounded-3xl border p-5">
+      <div
+        style={{ backgroundColor: CREAM, borderColor: BORDER }}
+        className="mb-5 flex h-44 items-center justify-center overflow-hidden rounded-2xl border"
+      >
+        {preview}
+      </div>
+      <h3 className="text-[19px] font-bold">{title}</h3>
+      <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: MUTED }}>
+        {desc}
+      </p>
+    </div>
+  );
+}
+
+function PhoneMock() {
+  return (
+    <div className="w-[320px] rounded-[46px] border-[10px] border-[#0f1116] bg-[#0f1116] shadow-2xl">
+      <div style={{ backgroundColor: CREAM }} className="flex h-[600px] flex-col overflow-hidden rounded-[36px]">
+        {/* Status bar with Dynamic Island + signal / wifi / battery */}
+        <div className="relative pt-2.5">
+          <div className="absolute left-1/2 top-2.5 h-6 w-24 -translate-x-1/2 rounded-full bg-[#0f1116]" />
+          <div className="flex items-center justify-between px-6 pt-1.5" style={{ color: INK }}>
+            <span className="text-[14px] font-bold">9:41</span>
+            <div className="flex items-center gap-1.5">
+              {/* cellular */}
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden>
+                <rect x="0" y="8" width="3" height="4" rx="1" />
+                <rect x="5" y="5.5" width="3" height="6.5" rx="1" />
+                <rect x="10" y="3" width="3" height="9" rx="1" />
+                <rect x="15" y="0" width="3" height="12" rx="1" />
+              </svg>
+              {/* wifi */}
+              <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" aria-hidden>
+                <path d="M8.5 2C5.6 2 3 3.1 1 5l1.4 1.5C4 5 6.2 4 8.5 4s4.5 1 6.1 2.5L16 5C14 3.1 11.4 2 8.5 2z" />
+                <path d="M8.5 6c-1.6 0-3.1.6-4.2 1.7L5.7 9.2C6.5 8.5 7.4 8.1 8.5 8.1s2 .4 2.8 1.1l1.4-1.5C11.6 6.6 10.1 6 8.5 6z" />
+                <circle cx="8.5" cy="10.8" r="1.2" />
+              </svg>
+              {/* battery */}
+              <svg width="26" height="13" viewBox="0 0 26 13" fill="none" aria-hidden>
+                <rect x="0.5" y="0.5" width="21" height="12" rx="3.5" stroke="currentColor" opacity="0.4" />
+                <rect x="2" y="2" width="18" height="9" rx="2" fill="currentColor" />
+                <rect x="23" y="4" width="2.5" height="5" rx="1.2" fill="currentColor" opacity="0.4" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 px-4 pb-2 pt-3">
+          {/* header + avatar */}
+          <div className="flex items-start justify-between px-1">
+            <div>
+              <p className="text-[12px] font-semibold" style={{ color: MUTED }}>
+                Welcome back
+              </p>
+              <p className="flex items-center gap-1.5 text-[18px] font-extrabold">
+                Hi there <img src="/billie.png" alt="Billie" className="h-6 w-6 object-contain" />
+              </p>
+            </div>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full text-[13px] font-bold text-white" style={{ backgroundColor: "#8B5CF6" }}>
+              J
+            </span>
+          </div>
+
+          {/* hustle chips */}
+          <div className="mt-3 flex gap-2 overflow-hidden">
+            <span className="whitespace-nowrap rounded-full bg-brand px-3 py-1.5 text-[11px] font-bold text-white">All hustles</span>
+            <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-bold" style={{ borderColor: BORDER, color: INK }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" /> Baby sitting
+            </span>
+            <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-bold" style={{ borderColor: BORDER, color: INK }}>
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#8B5CF6" }} /> 3D printing
+            </span>
+          </div>
+
+          {/* NET */}
+          <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="mt-3 rounded-2xl border p-4">
+            <p className="text-[10px] font-bold tracking-wider" style={{ color: MUTED }}>
+              NET
+            </p>
+            <p className="mt-0.5 text-[24px] font-extrabold">CHF 1,240</p>
+            <span className="mt-1.5 inline-block rounded-full bg-brand/15 px-2.5 py-0.5 text-[10px] font-bold text-brand">
+              All hustles
+            </span>
+          </div>
+
+          {/* income / expenses with icons */}
+          <div className="mt-3 grid grid-cols-2 gap-2.5">
+            <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="rounded-2xl border p-3">
+              <span className="mb-1.5 flex h-7 w-7 items-center justify-center rounded-lg bg-brand/15 text-[13px] font-bold text-brand">↗</span>
+              <p className="text-[10px]" style={{ color: MUTED }}>
+                Income
+              </p>
+              <p className="text-[13px] font-bold text-brand">+CHF 2.1k</p>
+            </div>
+            <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="rounded-2xl border p-3">
+              <span className="mb-1.5 flex h-7 w-7 items-center justify-center rounded-lg text-[13px] font-bold" style={{ backgroundColor: "#FBE3E3", color: "#E5484D" }}>↘</span>
+              <p className="text-[10px]" style={{ color: MUTED }}>
+                Expenses
+              </p>
+              <p className="text-[13px] font-bold text-[#E5484D]">-CHF 860</p>
+            </div>
+          </div>
+
+          {/* cashflow chart */}
+          <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="mt-3 rounded-2xl border p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-[13px] font-bold">Cashflow</p>
+              <p className="text-[10px]" style={{ color: MUTED }}>
+                Last 6 months
+              </p>
+            </div>
+            <div className="mt-3 flex h-16 items-end justify-between gap-2">
+              {[18, 14, 22, 16, 60, 12].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded"
+                  style={{ height: h, backgroundColor: i === 4 ? "#E5484D" : "rgba(16,185,129,0.35)" }}
+                />
+              ))}
+            </div>
+            <div className="mt-2 flex justify-between text-[9px] font-semibold" style={{ color: MUTED }}>
+              {["Feb", "Mar", "Apr", "May", "Jun", "Jul"].map((m) => (
+                <span key={m} className="flex-1 text-center">
+                  {m}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* recent activity */}
+          <div className="mt-4 flex items-center justify-between px-1">
+            <p className="text-[13px] font-bold">Recent activity</p>
+            <span className="text-[11px] font-bold text-brand">See all</span>
+          </div>
+          <p className="mt-2 px-1 text-[10px] font-bold tracking-wider" style={{ color: MUTED }}>
+            JUN 30
+          </p>
+          <div style={{ backgroundColor: CARD, borderColor: BORDER }} className="mt-1.5 flex items-center gap-2.5 rounded-2xl border p-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full text-[12px] font-bold text-white" style={{ backgroundColor: "#22C55E" }}>
+              A
+            </span>
+            <div className="flex-1">
+              <p className="text-[12px] font-bold">ALDI</p>
+              <p className="text-[10px]" style={{ color: MUTED }}>
+                Grocery shopping
+              </p>
+            </div>
+            <span className="text-[12px] font-bold text-[#E5484D]">-44.70</span>
+          </div>
+        </div>
+
+        {/* Bottom tab bar — the green + is the scan action, the core feature */}
+        <div style={{ borderColor: BORDER }} className="flex items-center justify-around border-t px-5 pb-3 pt-2 text-[14px]">
+          <span>🏠</span>
+          <span>🧾</span>
+          <span className="-mt-6 flex h-11 w-11 items-center justify-center rounded-2xl bg-brand text-[24px] font-bold text-white shadow-lg">
+            +
+          </span>
+          <span>📊</span>
+          <span>👤</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ScanPreview() {
+  return (
+    <div className="relative flex h-24 w-16 items-center justify-center rounded-md bg-white shadow-sm">
+      <div className="space-y-1.5">
+        <div className="h-1 w-9 rounded bg-[#0f1116]" />
+        <div className="h-1 w-6 rounded bg-[#cbd5d1]" />
+        <div className="h-1 w-8 rounded bg-[#cbd5d1]" />
+        <div className="h-1 w-5 rounded bg-[#cbd5d1]" />
+        <div className="mt-2 h-2 w-7 rounded bg-[#0f1116]" />
+      </div>
+      {/* scan frame corners */}
+      <div className="absolute -inset-2 rounded-lg border-2 border-brand/70" />
+      <div className="absolute inset-x-2 top-1/2 h-0.5 bg-brand" />
+    </div>
+  );
+}
+
+function BooksPreview() {
+  return (
+    <div className="flex items-center gap-3">
+      <img src="/billie.png" alt="" className="h-16 w-16 object-contain" />
+      <div className="flex items-end gap-1.5">
+        <div className="h-10 w-3 rounded bg-brand" />
+        <div className="h-16 w-3 rounded bg-brand" />
+        <div className="h-8 w-3 rounded bg-[#E5484D]" />
+        <div className="h-12 w-3 rounded bg-brand" />
+      </div>
+    </div>
+  );
+}
+
+function ExportPreview() {
+  return (
+    <div className="relative flex h-24 w-20 flex-col rounded-md bg-white p-2 shadow-sm">
+      <div className="mb-1 h-1.5 w-10 rounded bg-brand" />
+      {[10, 8, 11, 7, 9].map((w, i) => (
+        <div key={i} className="my-[3px] flex justify-between">
+          <div className="h-1 rounded bg-[#cbd5d1]" style={{ width: w * 2 }} />
+          <div className="h-1 w-3 rounded bg-[#cbd5d1]" />
+        </div>
+      ))}
+      <span className="absolute -bottom-3 -right-3 flex h-9 w-9 items-center justify-center rounded-full bg-brand text-white shadow-md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+    </div>
   );
 }
