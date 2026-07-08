@@ -9,94 +9,103 @@ export default function Privacy() {
         </Link>
         <h1 className="mt-6 text-[34px] font-extrabold tracking-[-1px]">Privacy Policy</h1>
         <p className="mt-2 text-[14px]" style={{ color: "#5C6570" }}>
-          Last updated: 7 July 2026
+          Last updated: 8 July 2026
         </p>
 
         <p className="mt-6 rounded-xl border p-4 text-[13px] italic" style={{ borderColor: "#EFE6D2", color: "#5C6570" }}>
-          This policy is provided as a starting template and is not legal advice. Have it reviewed by a qualified lawyer
-          before you publish or submit to the App Store.
+          This policy is written to reflect the Swiss FADP (nFADP) and the EU GDPR, but it is a template and not legal
+          advice. Have it reviewed by a qualified data-protection lawyer, and fill in the bracketed details, before you
+          publish or submit to the App Store.
         </p>
 
         <div className="mt-8 space-y-6 text-[15px] leading-relaxed" style={{ color: "#3A424C" }}>
           <p>
-            byeBills (&quot;byeBills&quot;, &quot;we&quot;, &quot;us&quot;) provides a mobile app that lets you scan
-            receipts and invoices, keep track of your income and expenses, and export that data. This policy explains
-            what personal data we process and why. It applies to the byeBills app and website.
+            byeBills (&quot;byeBills&quot;, &quot;we&quot;) provides a mobile app and website that let you scan receipts
+            and invoices and keep track of your income and expenses. This policy explains what personal data we process,
+            why, and your rights. It applies to the app, the website, and the waitlist.
           </p>
 
-          <Section title="1. Who is responsible">
-            The data controller is byeBills, Switzerland. For any privacy request, contact us at{" "}
+          <Section title="1. Controller & contact">
+            The data controller is <strong>[Your legal entity, Switzerland — name & address]</strong>. Data-protection
+            contact:{" "}
             <a href="mailto:jneber@proton.me" className="font-semibold text-brand">
               jneber@proton.me
             </a>
-            .
+            . If you are in the EU/EEA, our representative under Art. 27 GDPR is{" "}
+            <strong>[EU representative — to appoint]</strong>.
           </Section>
 
           <Section title="2. What we collect">
             <List
               items={[
                 "Account data: your name and email address, provided when you sign in with Apple or Google.",
-                "Financial data you add: transactions, amounts, dates, categories, vendors, notes, and the receipt/invoice photos you scan or upload.",
-                "Usage & device data: basic diagnostics and technical information needed to operate the app (e.g. app version, error logs).",
+                "Financial data you add: transactions, amounts, dates, categories, vendors, notes, and the receipt/invoice images you scan or upload.",
+                "Waitlist data: your email (and optional first name) if you join the pre-launch waitlist.",
+                "Usage & device data: basic diagnostics needed to run and secure the service (e.g. app version, error logs).",
               ]}
             />
           </Section>
 
-          <Section title="3. How we use your data">
-            We use your data to provide the service: to store and display your bookkeeping records, run receipt
-            extraction, sync your data across your devices, and keep the app secure and working. We do not sell your
-            personal data, and we do not use it for advertising.
+          <Section title="3. Why we process it & legal bases">
+            We process your data to provide the service (performance of our contract with you), to run receipt
+            extraction, and to keep the app secure (our legitimate interest). For the waitlist and any launch/marketing
+            emails, we rely on your <strong>consent</strong>, which you can withdraw at any time. Under the Swiss FADP we
+            process data in good faith and proportionately; under the GDPR our bases are Art. 6(1)(b), (f) and (a).
           </Section>
 
-          <Section title="4. AI processing (third-party)">
-            When you scan a receipt or invoice, the image is sent to a third-party AI provider (Google, via the Gemini
-            API) solely to extract information such as the amount, date, vendor and category. The provider processes the
-            image to return this data and does not use it to train models on our instructions. AI output can be
-            inaccurate — you are always shown the extracted data to review and edit before it is saved.
+          <Section title="4. AI processing (Google / Gemini)">
+            When you scan a receipt, the image is sent to <strong>Google</strong> (Gemini API) to extract fields such as
+            amount, date and vendor. Google acts as our processor under a data-processing agreement; where data reaches
+            the US, Google is certified under the EU–US and Swiss–US Data Privacy Framework. We use the API on terms
+            under which your content is <strong>not used to train models</strong>. AI output can be inaccurate — you
+            review and edit every extraction before it is saved.
           </Section>
 
-          <Section title="5. Legal bases">
-            Where the EU GDPR or the Swiss FADP applies, we process your data to perform our contract with you (to
-            provide the app), on the basis of your consent (which you may withdraw at any time), and for our legitimate
-            interest in operating and securing the service.
+          <Section title="5. Hosting, storage & sub-processors">
+            Your data is stored with <strong>Supabase</strong>, hosted in <strong>Switzerland (Zurich, eu-central-2)</strong>,
+            under a signed Data Processing Addendum — your primary data stays on Swiss servers. Supabase uses
+            sub-processors that may be US-based (e.g. AWS, Cloudflare, GitHub, Vercel); Standard Contractual Clauses cover
+            any such transfers. Note that a US-headquartered provider may in principle be subject to US legal access
+            (e.g. the CLOUD Act).
           </Section>
 
-          <Section title="6. Sharing">
-            We share data only with providers that help us run byeBills: our AI provider (for extraction, see §4), our
-            hosting/database provider (Supabase), and the app stores that process your subscription. These providers act
-            under agreements requiring appropriate protection of your data. We may also disclose data where legally
-            required.
+          <Section title="6. International transfers">
+            Your primary data stays in Switzerland. Where personal data is transferred abroad (e.g. to the US for certain
+            sub-processors or for the AI extraction), we rely on an adequacy decision (incl. the Swiss–US / EU–US Data
+            Privacy Framework for certified recipients) or on Standard Contractual Clauses with appropriate safeguards,
+            as required by the FADP and GDPR.
           </Section>
 
-          <Section title="7. Storage, security & retention">
-            Your data is stored with our infrastructure provider using industry-standard security measures. Receipt
-            images are kept private to your account. We retain your data for as long as your account is active; when you
-            delete your account or data, we delete it (subject to any retention required by law).
+          <Section title="7. Waitlist & marketing emails">
+            If you join the waitlist, we use your email to send launch updates and related news. Every email includes an
+            unsubscribe link, and you can opt out at any time. We do not sell your data or use it for third-party
+            advertising.
           </Section>
 
-          <Section title="8. Your rights">
-            You can access, correct, export, or delete your data at any time from within the app or by contacting us. You
-            may withdraw consent, and — if you are in the EU/EEA, UK or Switzerland — lodge a complaint with your data
-            protection authority.
+          <Section title="8. Retention">
+            We keep your data while your account (or waitlist entry) is active. When you delete your account or data, or
+            unsubscribe, we delete the corresponding data, subject to any retention required by law.
           </Section>
 
-          <Section title="9. Children">
-            byeBills is not directed to children and is intended for users aged 16 and older. We do not knowingly collect
-            data from children.
+          <Section title="9. Your rights">
+            You can request access to, correction, deletion, restriction, or a copy (portability) of your data, and
+            object to or withdraw consent for certain processing. Exercise these in the app or by emailing us. You may
+            also complain to the Swiss Federal Data Protection and Information Commissioner (FDPIC) or, in the EU/EEA,
+            your local data-protection authority.
           </Section>
 
-          <Section title="10. International transfers">
-            Your data may be processed outside your country (including by the providers named above). Where required, we
-            rely on appropriate safeguards for such transfers.
+          <Section title="10. Account deletion">
+            You can delete your account and all associated data from within the app at any time (Profile → Delete
+            account), or by contacting us.
           </Section>
 
-          <Section title="11. Changes">
-            We may update this policy from time to time. Material changes will be reflected by the &quot;last
-            updated&quot; date above.
+          <Section title="11. Security & children">
+            We use appropriate technical and organizational measures to protect your data. byeBills is intended for
+            users aged 16+ and is not directed to children.
           </Section>
 
-          <Section title="12. Contact">
-            Questions or requests:{" "}
+          <Section title="12. Changes & contact">
+            We may update this policy; material changes are reflected by the date above. Questions or requests:{" "}
             <a href="mailto:jneber@proton.me" className="font-semibold text-brand">
               jneber@proton.me
             </a>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createServiceClient } from "@/lib/supabase/service";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 // Server-side profile creation endpoint — called after client-side signup
 export async function POST(request: NextRequest) {
@@ -25,6 +26,11 @@ export async function POST(request: NextRequest) {
   if (error) {
     return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
   }
+
+  const posthog = getPostHogClient();
+  posthog.identify({ distinctId: user.id, properties: { email: user.email } });
+  posthog.capture({ distinctId: user.id, event: "user_signed_up" });
+  await posthog.shutdown();
 
   return NextResponse.json({ ok: true });
 }

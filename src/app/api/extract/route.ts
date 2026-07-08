@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getLLMProvider } from "@/lib/llm";
+import { getPostHogClient } from "@/lib/posthog-server";
 import crypto from "crypto";
 
 export async function POST(request: NextRequest) {
@@ -85,6 +86,21 @@ async function handleExtract(request: NextRequest) {
     .select("id")
     .eq("duplicate_hash", duplicateHash)
     .maybeSingle() as { data: { id: string } | null };
+
+  const posthog = getPostHogClient();
+  posthog.capture({
+    distinctId: user.id,
+    event: "receipt_extracted",
+    properties: {
+      document_type: extraction.data.document_type,
+      transaction_type: extraction.data.type,
+      currency: extraction.data.currency,
+      confidence: extraction.confidence,
+      provider: providerName,
+      is_duplicate: !!existing,
+    },
+  });
+  await posthog.shutdown();
 
   return NextResponse.json({
     extraction: extraction.data,
