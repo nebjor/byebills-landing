@@ -44,7 +44,7 @@ export default function Home() {
             </p>
 
             <div id="waitlist" className="mt-8 max-w-[500px]">
-              <p className="mb-3 text-[16px] font-extrabold">Get 3 months free at launch — join the waitlist 👇</p>
+              <p className="mb-3 text-[16px] font-extrabold">Get 1 month free at launch — join the waitlist 👇</p>
               <WaitlistForm />
               <p className="mt-3 text-[13px]" style={{ color: MUTED }}>
                 Early access + a launch discount. No spam, ever.
