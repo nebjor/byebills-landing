@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import WaitlistForm from "@/components/waitlist-form";
+import HeadlineExperiment from "@/components/headline-experiment";
 
 /* Warm palette (kept local so the app's dark theme elsewhere is untouched) */
 const CREAM = "#FBF4E6";
@@ -31,13 +32,7 @@ export default function Home() {
               <span className="text-[18px] font-bold">byeBills</span>
             </div>
 
-            <h1 className="text-[52px] font-extrabold leading-[0.98] tracking-[-2.5px] sm:text-[64px] lg:text-[72px]">
-              Meet Billie,
-              <br />
-              your pocket
-              <br />
-              bookkeeper
-            </h1>
+            <HeadlineExperiment />
 
             <p className="mt-6 max-w-[460px] text-[22px] leading-relaxed" style={{ color: MUTED }}>
               Snap a receipt. Billie does the rest.
@@ -354,3 +349,4 @@ function ExportPreview() {
     </div>
   );
 }
+                                                                                                                                                           
