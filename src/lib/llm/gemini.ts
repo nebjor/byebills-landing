@@ -17,11 +17,20 @@ export class GeminiProvider implements LLMProvider {
   ): Promise<ExtractionResult> {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
 
+    const now = new Date();
+    const today = now.toISOString().slice(0, 10);
+    const year = now.getFullYear();
+    const prompt =
+      `${EXTRACTION_PROMPT}\n\nToday's date is ${today} (current year ${year}). ` +
+      `Receipts are almost always from ${year}, occasionally the previous year, and never in the future. ` +
+      `If a printed year digit is ambiguous (e.g. a "6" that looks like a "0"), choose the most recent plausible year (prefer ${year}). ` +
+      `Do not output a year more than one year before ${year}.`;
+
     const body = {
       contents: [
         {
           parts: [
-            { text: EXTRACTION_PROMPT },
+            { text: prompt },
             {
               inline_data: {
                 mime_type: mimeType,
