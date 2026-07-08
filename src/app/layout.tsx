@@ -4,6 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+import PostHogProvider from "@/components/posthog-provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,7 +26,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.byebills.app"),
   title: "byeBills — your pocket bookkeeper",
   description: "Snap a receipt. Billie does the rest — automatic bookkeeping for side-hustlers.",
-  icons: { icon: "/billie.png", apple: "/billie.png" },
   manifest: "/manifest.json",
   openGraph: {
     title: "byeBills — your pocket bookkeeper",
@@ -60,9 +61,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="min-h-full flex flex-col">
-        {children}
-        <SpeedInsights />
-        <Analytics />
+        <PostHogProvider>
+          {children}
+          <SpeedInsights />
+          <Analytics />
+        </PostHogProvider>
       </body>
     </html>
   );

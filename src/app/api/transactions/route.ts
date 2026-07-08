@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient();
@@ -50,6 +51,19 @@ export async function POST(request: NextRequest) {
   }
 
   // TODO: Trigger sync to Google Sheets / other integrations here
+
+  const posthog = getPostHogClient();
+  posthog.capture({
+    distinctId: user.id,
+    event: "transaction_created",
+    properties: {
+      transaction_type: transactionData.type,
+      document_type: transactionData.document_type,
+      currency: transactionData.currency,
+      payment_method: transactionData.payment_method,
+    },
+  });
+  await posthog.shutdown();
 
   return NextResponse.json({ transaction });
 }

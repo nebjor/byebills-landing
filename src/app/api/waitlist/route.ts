@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 // Public endpoint — anyone can join the waitlist. Writes with the service role
 // (server-side only) so the table stays locked down.
@@ -26,6 +27,12 @@ export async function POST(request: NextRequest) {
     if (error) {
       return NextResponse.json({ error: "Something went wrong. Try again." }, { status: 500 });
     }
+
+    const posthog = getPostHogClient();
+    posthog.identify({ distinctId: email, properties: { email, name: name ?? undefined } });
+    posthog.capture({ distinctId: email, event: "waitlist_signup_server", properties: { source: "landing" } });
+    await posthog.shutdown();
+
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });

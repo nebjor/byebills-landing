@@ -43,11 +43,24 @@ export default function Home() {
               Snap a receipt. Billie does the rest.
             </p>
 
-            <div id="waitlist" className="mt-8 max-w-[500px]">
-              <p className="mb-3 text-[16px] font-extrabold">Get 1 month free at launch — join the waitlist 👇</p>
+            <div
+              className="mt-5 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[14px] font-bold"
+              style={{ borderColor: BORDER, color: INK, backgroundColor: CARD }}
+            >
+              🇨🇭 Swiss-made · your data stays on Swiss servers
+            </div>
+
+            <div id="waitlist" className="mt-8 max-w-[540px]">
+              <p className="mb-4 text-[20px] font-extrabold leading-snug">
+                Get 1 month free at launch — join the waitlist 👇
+              </p>
               <WaitlistForm />
-              <p className="mt-3 text-[13px]" style={{ color: MUTED }}>
-                Early access + a launch discount. No spam, ever.
+              <p className="mt-4 text-[14px]" style={{ color: MUTED }}>
+                Early access + a launch discount. No spam — unsubscribe anytime. See our{" "}
+                <Link href="/privacy" className="font-semibold text-[color:var(--color-brand)]">
+                  Privacy Policy
+                </Link>
+                .
               </p>
             </div>
           </div>

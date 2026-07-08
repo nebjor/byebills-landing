@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import posthog from "posthog-js";
 
 type ExtractionData = {
   type: "income" | "expense";
@@ -40,6 +41,7 @@ export default function ScanModal({
   async function handleFile(file: File) {
     setStep("extracting");
     setError("");
+    posthog.capture("receipt_scan_started", { source: file.name === "capture.jpg" ? "camera" : "upload" });
 
     const formData = new FormData();
     formData.append("file", file);
@@ -68,6 +70,13 @@ export default function ScanModal({
   async function handleConfirm() {
     if (!data) return;
     setStep("saving");
+    posthog.capture("receipt_scan_confirmed", {
+      transaction_type: data.type,
+      document_type: data.document_type,
+      currency: data.currency,
+      payment_method: data.payment_method,
+      is_duplicate: !!duplicate,
+    });
 
     try {
       const res = await fetch("/api/transactions", {
