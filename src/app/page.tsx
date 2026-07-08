@@ -1,19 +1,13 @@
 import Link from "next/link";
 
+import WaitlistForm from "@/components/waitlist-form";
+
 /* Warm palette (kept local so the app's dark theme elsewhere is untouched) */
 const CREAM = "#FBF4E6";
 const CARD = "#FFFDF8";
 const INK = "#15181D";
 const MUTED = "#5C6570";
 const BORDER = "#EFE6D2";
-
-function AppleGlyph() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M16.365 1.43c0 1.14-.42 2.2-1.12 2.99-.75.86-1.98 1.52-3.02 1.44-.13-1.09.44-2.25 1.11-2.99.76-.82 2.07-1.44 3.03-1.44zM20.5 17.2c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.53-4.12 3.54-1.54.02-1.94-1.01-4.03-1-2.09.01-2.53 1.02-4.07 1-1.73-.02-3.06-1.78-4.05-3.35C-.02 17.86-.3 12.9 1.36 10.4c1.18-1.79 3.04-2.84 4.79-2.84 1.78 0 2.9 1 4.37 1 1.43 0 2.3-1 4.36-1 1.56 0 3.21.85 4.39 2.32-3.86 2.11-3.23 7.62.83 9.32z" />
-    </svg>
-  );
-}
 
 function Candle() {
   // Small byeBills icon tile
@@ -49,13 +43,12 @@ export default function Home() {
               Snap a receipt. Billie does the rest.
             </p>
 
-            <div id="download" className="mt-9">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2.5 rounded-full bg-brand px-8 py-4 text-[18px] font-bold text-white shadow-md transition hover:brightness-105"
-              >
-                <AppleGlyph /> Download on iOS
-              </a>
+            <div id="waitlist" className="mt-8 max-w-[500px]">
+              <p className="mb-3 text-[16px] font-extrabold">Get 3 months free at launch — join the waitlist 👇</p>
+              <WaitlistForm />
+              <p className="mt-3 text-[13px]" style={{ color: MUTED }}>
+                Early access + a launch discount. No spam, ever.
+              </p>
             </div>
           </div>
 
