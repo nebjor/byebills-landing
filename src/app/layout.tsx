@@ -21,9 +21,26 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "ByeBills — Invoice Scanner & Bookkeeper",
-  description: "Scan invoices, extract data with AI, bookkeep automatically",
+  metadataBase: new URL("https://www.byebills.app"),
+  title: "byeBills — your pocket bookkeeper",
+  description: "Snap a receipt. Billie does the rest — automatic bookkeeping for side-hustlers.",
+  icons: { icon: "/billie.png", apple: "/billie.png" },
   manifest: "/manifest.json",
+  openGraph: {
+    title: "byeBills — your pocket bookkeeper",
+    description: "Snap a receipt. Billie does the rest.",
+    url: "https://www.byebills.app",
+    siteName: "byeBills",
+    type: "website",
+    locale: "en_US",
+    images: [{ url: "/billie.png", width: 540, height: 540, alt: "Billie the flying invoice" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "byeBills — your pocket bookkeeper",
+    description: "Snap a receipt. Billie does the rest.",
+    images: ["/billie.png"],
+  },
 };
 
 export default function RootLayout({
