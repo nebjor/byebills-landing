@@ -6,7 +6,9 @@ import { getLLMProvider } from "@/lib/llm";
  * Mobile extraction endpoint.
  *
  * Auth: the app sends `Authorization: Bearer <supabase access token>`.
- * Quota: enforced server-side via the consume_extraction() RPC (5/month free).
+ * Quota: enforced server-side via the consume_extraction() RPC (7-day trial,
+ * hard cap of 30 scans/day; pro capped at 200/day). The client cannot bypass
+ * or reset this — identity is auth.uid() from the verified JWT.
  * The Gemini key stays here — never in the app.
  *
  * Kept separate from /api/extract (the web flow) so the website is untouched.
@@ -46,18 +48,25 @@ async function handle(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Reserve one scan atomically. Denied -> 402 (over quota).
+  // Reserve one scan atomically. Denied -> 402 with a machine-readable reason.
   const { data: gate, error: gateErr } = await supabase.rpc("consume_extraction").single<{
     allowed: boolean;
     used: number;
-    quota: number;
+    cap: number;
+    reason: string; // 'daily_cap' | 'trial_ended' when blocked
   }>();
   if (gateErr) {
     return NextResponse.json({ error: gateErr.message }, { status: 500 });
   }
   if (!gate?.allowed) {
+    const daily = gate?.reason === "daily_cap";
     return NextResponse.json(
-      { error: "Monthly scan limit reached", used: gate?.used, quota: gate?.quota },
+      {
+        error: daily ? "Daily scan limit reached" : "Free trial ended",
+        reason: gate?.reason ?? "trial_ended",
+        used: gate?.used,
+        cap: gate?.cap,
+      },
       { status: 402 }
     );
   }
@@ -81,8 +90,8 @@ async function handle(request: NextRequest) {
     return NextResponse.json({
       extraction: extraction.data,
       confidence: extraction.confidence,
-      remaining: Math.max(0, gate.quota - gate.used),
-      quota: gate.quota,
+      remaining: Math.max(0, gate.cap - gate.used),
+      cap: gate.cap,
       used: gate.used,
     });
   } catch (err) {
