@@ -68,3 +68,26 @@ export default function WaitlistForm() {
             <input
               type="text"
               placeholder="First name (optional)"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={`${inputCls} flex-1`}
+              style={{ borderColor: "#EFE6D2" }}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="mt-3 w-full rounded-2xl bg-brand py-4 text-[19px] font-extrabold text-white shadow-md transition hover:brightness-105 disabled:opacity-60"
+          >
+            {status === "loading" ? "Joining…" : "Get early access →"}
+          </button>
+
+          <p className="mt-2 min-h-[18px] text-[14px] font-semibold text-[#E5484D]">
+            {status === "error" ? msg : ""}
+          </p>
+        </form>
+      )}
+    </div>
+  );
+}
