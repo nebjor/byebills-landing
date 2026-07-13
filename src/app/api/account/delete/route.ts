@@ -25,7 +25,9 @@ export async function POST(request: NextRequest) {
 
     // 2. Delete their data + auth record with the service role.
     const admin = createClient(url, process.env.SUPABASE_SERVICE_ROLE_KEY!);
-    // Extend this list as more user-owned tables are added (transactions, hustles, …).
+    // Delete all user-owned rows before removing the auth record.
+    await admin.from("app_transactions").delete().eq("user_id", user.id);
+    await admin.from("app_hustles").delete().eq("user_id", user.id);
     await admin.from("extraction_usage").delete().eq("user_id", user.id);
     await admin.from("user_entitlements").delete().eq("user_id", user.id);
 
