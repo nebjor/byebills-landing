@@ -31,16 +31,14 @@ export async function POST(request: NextRequest) {
     await admin.from("extraction_usage").delete().eq("user_id", user.id);
     await admin.from("user_entitlements").delete().eq("user_id", user.id);
 
+    // Remove the user's receipt images from Storage.
+    const { data: files } = await admin.storage.from("receipts").list(user.id);
+    if (files?.length) {
+      await admin.storage.from("receipts").remove(files.map((f) => `${user.id}/${f.name}`));
+    }
+
     const { error: delErr } = await admin.auth.admin.deleteUser(user.id);
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
 
     const posthog = getPostHogClient();
-    posthog.capture({ distinctId: user.id, event: "account_deleted" });
-    await posthog.shutdown();
-
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : "Internal error";
-    return NextResponse.json({ error: msg }, { status: 500 });
-  }
-}
+    posthog.capture({ distinctId: user.id, eve
