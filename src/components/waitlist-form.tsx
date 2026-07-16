@@ -1,13 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import posthog from "posthog-js";
+
+const FREE_SPOTS = 12; // first 12 signups get byeBills forever free
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [msg, setMsg] = useState("");
+  const [spotsLeft, setSpotsLeft] = useState<number | null>(null);
+
+  // Live count from the Supabase waitlist table.
+  useEffect(() => {
+    fetch("/api/waitlist/count")
+      .then((r) => r.json())
+      .then((d) => {
+        if (typeof d.count === "number") setSpotsLeft(Math.max(0, FREE_SPOTS - d.count));
+      })
+      .catch(() => {});
+  }, []);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +39,7 @@ export default function WaitlistForm() {
         return;
       }
       setStatus("done");
+      setSpotsLeft((s) => (s === null ? s : Math.max(0, s - 1)));
       posthog.capture("waitlist_joined", { has_name: name.trim().length > 0 });
     } catch {
       setStatus("error");
@@ -55,6 +69,23 @@ export default function WaitlistForm() {
         </div>
       ) : (
         <form onSubmit={submit} className="flex min-h-[196px] flex-col justify-center sm:min-h-[128px]">
+          {spotsLeft !== null ? (
+            <div className="mb-3 text-[15px] font-extrabold leading-snug" style={{ color: "#15181D" }}>
+              {spotsLeft > 0 ? (
+                <>
+                  🎁 First 12 signups get byeBills{" "}
+                  <span style={{ color: "#7A5AF8" }}>forever free</span> —{" "}
+                  <span style={{ color: "#7A5AF8" }}>
+                    {spotsLeft} spot{spotsLeft === 1 ? "" : "s"} left!
+                  </span>
+                </>
+              ) : (
+                <span style={{ color: "#5C6570" }}>
+                  All 12 free spots are gone — join the waitlist for early access + a launch discount.
+                </span>
+              )}
+            </div>
+          ) : null}
           <div className="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"

@@ -41,4 +41,12 @@ export async function POST(request: NextRequest) {
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 });
 
     const posthog = getPostHogClient();
-    posthog.capture({ distinctId: user.id, eve
+    posthog.capture({ distinctId: user.id, event: "account_deleted" });
+    await posthog.shutdown();
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Internal error";
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
+}

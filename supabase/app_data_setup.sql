@@ -56,4 +56,23 @@ on conflict (id) do nothing;
 
 -- Users may only touch objects inside their own folder (first path segment).
 drop policy if exists "receipts read own"   on storage.objects;
-drop policy if exists "
+drop policy if exists "receipts insert own" on storage.objects;
+drop policy if exists "receipts update own" on storage.objects;
+drop policy if exists "receipts delete own" on storage.objects;
+
+create policy "receipts read own" on storage.objects
+  for select using (
+    bucket_id = 'receipts' and (storage.foldername(name))[1] = auth.uid()::text
+  );
+create policy "receipts insert own" on storage.objects
+  for insert with check (
+    bucket_id = 'receipts' and (storage.foldername(name))[1] = auth.uid()::text
+  );
+create policy "receipts update own" on storage.objects
+  for update using (
+    bucket_id = 'receipts' and (storage.foldername(name))[1] = auth.uid()::text
+  );
+create policy "receipts delete own" on storage.objects
+  for delete using (
+    bucket_id = 'receipts' and (storage.foldername(name))[1] = auth.uid()::text
+  );
