@@ -46,9 +46,6 @@ export default function Home() {
             </div>
 
             <div id="waitlist" className="mt-8 max-w-[540px]">
-              <p className="mb-4 text-[20px] font-extrabold leading-snug">
-                Get 1 month free at launch — join the waitlist 👇
-              </p>
               <WaitlistForm />
               <p className="mt-4 text-[14px]" style={{ color: MUTED }}>
                 Early access + a launch discount. No spam — unsubscribe anytime. See our{" "}
@@ -349,3 +346,4 @@ function ExportPreview() {
     </div>
   );
 }
+                                                                                                                                                                    
