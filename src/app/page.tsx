@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import WaitlistForm from "@/components/waitlist-form";
 import HeadlineExperiment from "@/components/headline-experiment";
+import WaitlistForm from "@/components/waitlist-form";
 
 /* Warm palette (kept local so the app's dark theme elsewhere is untouched) */
 const CREAM = "#FBF4E6";
@@ -346,4 +346,3 @@ function ExportPreview() {
     </div>
   );
 }
-                                                                                                                                                                    
